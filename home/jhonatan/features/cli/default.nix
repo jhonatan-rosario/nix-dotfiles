@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   imports = [
     ./fish.nix
-    ./nushell.nix
     ./micro.nix
     ./nh.nix
     ./git.nix
+    # ./nushell.nix
     # ./nix-alien.nix
     # ./bat.nix
     # ./direnv.nix

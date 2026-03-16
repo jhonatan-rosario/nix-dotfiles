@@ -15,7 +15,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     systems.url = "github:nix-systems/default-linux";
 
     plasma-manager = {
@@ -28,7 +28,7 @@
 
     nix-colors.url = "github:misterio77/nix-colors";
 
-    hardware.url = "github:nixos/nixos-hardware";
+    hardware.url = "github:nixos/nixos-hardware/master";
 
     # systems.url = "github:nix-systems/default-linux";
 
@@ -102,7 +102,9 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       voyager = lib.nixosSystem {
-        modules = [./hosts/voyager];
+        modules = [
+          ./hosts/voyager
+        ];
         specialArgs = {
           inherit inputs outputs;
         };

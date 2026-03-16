@@ -4,20 +4,20 @@
   ...
 }: {
   imports = [
-    inputs.hardware.nixosModules.common-cpu-intel
-    inputs.hardware.nixosModules.common-gpu-intel
-    inputs.hardware.nixosModules.common-pc-ssd
+    inputs.hardware.nixosModules.lenovo-thinkpad-e14-amd
+    inputs.hardware.nixosModules.common-pc-laptop
+    inputs.hardware.nixosModules.common-pc-laptop-ssd
 
     ./hardware-configuration.nix
 
     ../common/global
     ../common/users/jhonatan
 
-    ../common/optional/gnome.nix # Desktop Environment
-    # ../common/optional/plasma.nix # Desktop Environment
+    ../common/optional/plasma.nix # Desktop Environment
+    # ../common/optional/gnome.nix # Desktop Environment
     # ../common/optional/hyprland.nix # Window Manager
-
-    ../common/optional/disable-nvidia.nix
+    # ../common/optional/disable-nvidia.nix
+    
     ../common/optional/encrypted-root.nix
     ../common/optional/pipewire.nix
     ../common/optional/podman.nix
@@ -66,7 +66,10 @@
     '';
   };
 
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   services.auto-cpufreq.enable = false;
   services.auto-cpufreq.settings = {
@@ -80,5 +83,5 @@
     };
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.11";
 }

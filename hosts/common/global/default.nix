@@ -36,7 +36,7 @@
     QT_PLUGIN_PATH = ["/lib/qt-6/plugins"];
   };
 
-  hardware.enableRedistributableFirmware = true;
+  # hardware.enableRedistributableFirmware = true;
   # networking.domain = "m7.rs";
 
   # Increase open file limit for sudoers

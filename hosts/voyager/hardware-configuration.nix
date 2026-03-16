@@ -7,7 +7,7 @@
 }: {
   imports = [
     ../common/optional/btrfs.nix
-    ../common/optional/encrypted-root.nix
+    # ../common/optional/encrypted-root.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
@@ -24,7 +24,7 @@
       ];
       kernelModules = ["usb_storage" "rtsx_pci_sdmmc"];
     };
-    kernelModules = ["kvm-intel"];
+    kernelModules = ["kvm-amd"];
   };
 
   fileSystems = {
@@ -45,5 +45,5 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   # hardware.cpu.amd.updateMicrocode = true;
   # powerManagement.cpuFreqGovernor = "ondemand";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  # hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
