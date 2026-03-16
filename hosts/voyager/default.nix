@@ -18,7 +18,7 @@
     # ../common/optional/hyprland.nix # Window Manager
     # ../common/optional/disable-nvidia.nix
     
-    ../common/optional/encrypted-root.nix
+    # ../common/optional/encrypted-root.nix
     ../common/optional/pipewire.nix
     ../common/optional/podman.nix
     ../common/optional/docker.nix
