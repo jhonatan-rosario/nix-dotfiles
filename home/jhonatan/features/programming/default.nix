@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./nodejs.nix
+  ];
+}
