@@ -13,7 +13,7 @@ in {
 
   fileSystems = {
     "/" = {
-      device = "/dev/mapper/${hostname}";
+      device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [
         "subvol=root"
@@ -22,7 +22,7 @@ in {
     };
 
     "/nix" = {
-      device = "/dev/mapper/${hostname}";
+      device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [
         "subvol=nix"
@@ -32,7 +32,7 @@ in {
     };
 
     "/home" = {
-      device = "/dev/mapper/${hostname}";
+      device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [
         "subvol=home"
@@ -42,7 +42,7 @@ in {
     };
 
     "/snapshots" = {
-      device = "/dev/mapper/${hostname}";
+      device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [
         "subvol=snapshots"
@@ -52,7 +52,7 @@ in {
     };
 
     "/swap" = {
-      device = "/dev/mapper/${hostname}";
+      device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [
         "subvol=swap"

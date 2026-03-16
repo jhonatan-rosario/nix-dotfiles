@@ -27,7 +27,7 @@
     ../common/optional/fingerprint.nix
     ../common/optional/bluetooth.nix
     ../common/optional/virtual-machine.nix
-    ../common/optional/samba.nix
+    # ../common/optional/samba.nix
     ../common/optional/flatpak.nix
     ../common/optional/default-packages.nix
   ];
@@ -46,25 +46,23 @@
 
   powerManagement.powertop.enable = true;
   programs = {
-    light.enable = true;
-    adb.enable = true;
     dconf.enable = true;
     git.enable = true;
   };
 
   # Lid settings
-  services.logind = {
+ # services.logind = {
     # lidSwitch = "suspend";
     # lidSwitchExternalPower = "lock";
     # powerKey = "ignore";
-    extraConfig = ''
-      # don’t shutdown when power button is short-pressed
-      HandlePowerKey=ignore
-      HandleLidSwitch=hibernate
-      HandleLidSwitchDocked=ignore
-      HandleLidSwitchExternalPower=lock
-    '';
-  };
+    #extraConfig = ''
+    #  # don’t shutdown when power button is short-pressed
+    #  HandlePowerKey=ignore
+    #  HandleLidSwitch=hibernate
+    #  HandleLidSwitchDocked=ignore
+    #  HandleLidSwitchExternalPower=lock
+    #'';
+  #};
 
   hardware.graphics = {
     enable = true;
