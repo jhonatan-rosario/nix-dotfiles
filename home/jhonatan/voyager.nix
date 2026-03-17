@@ -15,7 +15,8 @@
     ./global
     ./features/programming
     # ./features/desktop/hyprland
-    ./features/desktop/plasma
+    # ./features/desktop/plasma
+    ./features/desktop/gnome
     ./features/work
   ];
   # Red

@@ -2,7 +2,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.hardware.nixosModules.lenovo-thinkpad-e14-amd
     inputs.hardware.nixosModules.common-pc-laptop
@@ -13,11 +14,11 @@
     ../common/global
     ../common/users/jhonatan
 
-    ../common/optional/plasma.nix # Desktop Environment
+    # ../common/optional/plasma.nix # Desktop Environment
     # ../common/optional/gnome.nix # Desktop Environment
     # ../common/optional/hyprland.nix # Window Manager
     # ../common/optional/disable-nvidia.nix
-    
+
     # ../common/optional/encrypted-root.nix
     ../common/optional/pipewire.nix
     ../common/optional/podman.nix
@@ -51,17 +52,17 @@
   };
 
   # Lid settings
- # services.logind = {
-    # lidSwitch = "suspend";
-    # lidSwitchExternalPower = "lock";
-    # powerKey = "ignore";
-    #extraConfig = ''
-    #  # don’t shutdown when power button is short-pressed
-    #  HandlePowerKey=ignore
-    #  HandleLidSwitch=hibernate
-    #  HandleLidSwitchDocked=ignore
-    #  HandleLidSwitchExternalPower=lock
-    #'';
+  # services.logind = {
+  # lidSwitch = "suspend";
+  # lidSwitchExternalPower = "lock";
+  # powerKey = "ignore";
+  #extraConfig = ''
+  #  # don’t shutdown when power button is short-pressed
+  #  HandlePowerKey=ignore
+  #  HandleLidSwitch=hibernate
+  #  HandleLidSwitchDocked=ignore
+  #  HandleLidSwitchExternalPower=lock
+  #'';
   #};
 
   hardware.graphics = {

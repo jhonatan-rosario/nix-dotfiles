@@ -11,7 +11,7 @@
 
       # background = [
       #   {
-      #     path = "/home/jhonatan/Workspace/nix-config/home/jhonatan/features/desktop/hyprland/wallpaper.jpeg";
+      #     path = "/home/jhonatan/nix/home/jhonatan/features/desktop/hyprland/wallpaper.jpeg";
       #     blur_passes = 3;
       #     blur_size = 8;
       #   }
@@ -47,7 +47,7 @@
       background = [
         {
           monitor = "";
-          path = "/home/jhonatan/Workspace/nix-config/home/jhonatan/features/desktop/hyprland/city-horizon.jpg";
+          path = "/home/jhonatan/nix/home/jhonatan/features/desktop/hyprland/city-horizon.jpg";
           blur_passes = 2;
           contrast = 0.8916;
           brightness = 0.8172;
@@ -118,7 +118,7 @@
       image = [
         {
           monitor = "";
-          path = "/home/jhonatan/Workspace/nix-config/home/jhonatan/features/desktop/hyprland/user.png";
+          path = "/home/jhonatan/nix/home/jhonatan/features/desktop/hyprland/user.png";
           border_size = 0;
           border_color = "rgba(255, 255, 255, 0)";
           size = 105;

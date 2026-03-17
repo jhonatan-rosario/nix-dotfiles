@@ -1,8 +1,16 @@
-{pkgs, ...}: {
-  imports = [../common];
+{ pkgs, ... }:
+{
+  imports = [ ../common ];
 
   programs.plasma = {
     enable = true;
+
+    #input.touchpads = [
+    #  {
+    #    name = "Virtual core XTEST pointer";
+    #    naturalScrolling = true;
+    #  }
+    #];
 
     hotkeys.commands = {
       "launch-settings" = {
@@ -18,7 +26,7 @@
     xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-kde
+      kdePackages.xdg-desktop-portal-kde
     ];
     config = {
       common = {

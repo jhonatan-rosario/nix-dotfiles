@@ -1,9 +1,11 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./fish.nix
     ./micro.nix
     ./nh.nix
     ./git.nix
+    ./distrobox.nix
     # ./nushell.nix
     # ./nix-alien.nix
     # ./bat.nix
@@ -22,7 +24,7 @@
   ];
   home.packages = with pkgs; [
     comma # Install and run programs by sticking a , before them
-    distrobox # Nice escape hatch, integrates docker images with my environment
+    #distrobox # Nice escape hatch, integrates docker images with my environment
 
     bc # Calculator
     bottom # System viewer
@@ -38,7 +40,7 @@
 
     nixd # Nix LSP
     alejandra # Nix formatter
-    nixfmt-rfc-style
+    nixfmt
     nvd # Differ
     nix-diff # Differ, more detailed
     nix-output-monitor

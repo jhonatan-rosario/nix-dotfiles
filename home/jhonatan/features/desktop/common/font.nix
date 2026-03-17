@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     nerd-fonts.fira-code
     inter-nerdfont
@@ -9,8 +10,8 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      sansSerif = ["Inter Nerd Font"];
-      monospace = ["FiraCode Nerd Font"];
+      sansSerif = [ "Inter Nerd Font" ];
+      monospace = [ "FiraCode Nerd Font" ];
     };
   };
 

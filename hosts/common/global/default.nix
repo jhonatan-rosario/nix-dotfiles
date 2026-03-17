@@ -3,20 +3,21 @@
   inputs,
   outputs,
   ...
-}: {
-  imports =
-    [
-      inputs.home-manager.nixosModules.home-manager
-      ./fish.nix
-      ./locale.nix
-      ./nix.nix
-      ./openssh.nix
-      ./bootloader.nix
-      ./nix-ld.nix
-      ./networking.nix
-      # ./fonts.nix
-    ]
-    ++ (builtins.attrValues outputs.nixosModules);
+}:
+{
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+    ./fish.nix
+    ./locale.nix
+    ./nix.nix
+    ./openssh.nix
+    ./bootloader.nix
+    ./nix-ld.nix
+    ./networking.nix
+    ./resolved.nix
+    # ./fonts.nix
+  ]
+  ++ (builtins.attrValues outputs.nixosModules);
 
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = {
@@ -33,7 +34,7 @@
   # Fix for qt6 plugins
   # TODO: maybe upstream this?
   environment.profileRelativeSessionVariables = {
-    QT_PLUGIN_PATH = ["/lib/qt-6/plugins"];
+    QT_PLUGIN_PATH = [ "/lib/qt-6/plugins" ];
   };
 
   # hardware.enableRedistributableFirmware = true;

@@ -1,4 +1,7 @@
-{...}: {
+{
+  pkgs,
+  ...
+}: {
   # Set as default editor
   xdg.mimeApps = {
     associations.added = {
@@ -11,5 +14,6 @@
 
   programs.vscode = {
     enable = true;
+    package = pkgs.antigravity;
   };
 }

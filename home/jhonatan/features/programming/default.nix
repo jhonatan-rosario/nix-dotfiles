@@ -1,5 +1,6 @@
+{ pkgs, ... }:
 {
-  imports = [
-    ./nodejs.nix
+  home.packages = with pkgs; [
+    bun
   ];
 }

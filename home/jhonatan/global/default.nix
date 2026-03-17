@@ -5,13 +5,13 @@
   config,
   outputs,
   ...
-}: {
-  imports =
-    [
-      # inputs.impermanence.nixosModules.home-manager.impermanence
-      ../features/cli
-    ]
-    ++ (builtins.attrValues outputs.homeManagerModules);
+}:
+{
+  imports = [
+    # inputs.impermanence.nixosModules.home-manager.impermanence
+    ../features/cli
+  ]
+  ++ (builtins.attrValues outputs.homeManagerModules);
 
   nix = {
     package = lib.mkDefault pkgs.nix;
@@ -34,9 +34,9 @@
     username = lib.mkDefault "jhonatan";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "25.11";
-    sessionPath = ["$HOME/.local/bin"];
+    sessionPath = [ "$HOME/.local/bin" ];
     sessionVariables = {
-      FLAKE = "$HOME/Workspace/nix-config";
+      FLAKE = "$HOME/nix";
       NIXPKGS_ALLOW_UNFREE = "1";
       NIXOS_OZONE_WL = "1";
     };
@@ -49,8 +49,8 @@
 
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
     };
   };
 
