@@ -13,9 +13,10 @@ in
     ./flatpak.nix
     ./playerctl.nix
     ./gtk.nix
-    # ./qt.nix
+    ./qt.nix
+    ./brave.nix
+    ./obsidian.nix
     # ./vscode.nix
-    # ./brave.nix
   ];
 
   home.packages = with pkgs; [
@@ -24,9 +25,10 @@ in
     remmina
     antigravity-nix
     jetbrains.datagrip
+    winboat
+    # bitwarden-desktop # Problemea no build versão 2026.2.1
     # antigravity
     # dbeaver-bin
-    # bitwarden-desktop
   ];
 
   # Also sets org.freedesktop.appearance color-scheme
@@ -37,5 +39,8 @@ in
   # then "prefer-light"
   # else "default";
 
-  xdg.portal.enable = true;
+  # xdg.portal = {
+  #   enable = true;
+  #   config.common.default = "*";
+  # };
 }

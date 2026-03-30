@@ -3,8 +3,9 @@
     enable = true;
     packages = [
       # "com.anydesk.Anydesk"
-      # "com.bitwarden.desktop"
+      "com.bitwarden.desktop"
       "io.github.zen_browser.zen"
+      "com.devolutions.remotedesktopmanager"
     ];
   };
 

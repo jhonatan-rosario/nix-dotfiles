@@ -65,7 +65,6 @@
       nix-flatpak,
       anyrun,
       antigravity-nix,
-      caelestia-shell,
       ...
     }@inputs:
     let

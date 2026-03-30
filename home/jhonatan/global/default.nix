@@ -43,7 +43,7 @@
 
     keyboard = {
       layout = "us";
-      variant = "alt-intl";
+      variant = "intl";
     };
   };
 

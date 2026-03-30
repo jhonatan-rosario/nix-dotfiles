@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   i18n = {
     defaultLocale = lib.mkDefault "pt_BR.UTF-8";
     extraLocaleSettings = {
@@ -23,8 +24,10 @@
 
   services.xserver = {
     xkb.layout = "us,br";
-    xkb.variant = "alt-intl";
+    xkb.variant = "intl";
     xkb.options = "grp:alt_shift_toggle";
     exportConfiguration = true;
   };
+
+  console.useXkbConfig = true;
 }

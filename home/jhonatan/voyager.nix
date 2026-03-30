@@ -14,10 +14,10 @@
     nix-colors.homeManagerModules.default
     ./global
     ./features/programming
-    # ./features/desktop/hyprland
-    # ./features/desktop/plasma
     ./features/desktop/gnome
     ./features/work
+    # ./features/desktop/plasma
+    # ./features/desktop/hyprland
   ];
   # Red
   wallpaper = pkgs.wallpapers.aenami-dawn;

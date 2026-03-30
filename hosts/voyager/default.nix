@@ -13,13 +13,13 @@
 
     ../common/global
     ../common/users/jhonatan
+    ../common/optional/gnome.nix # Desktop Environment
 
     # ../common/optional/plasma.nix # Desktop Environment
-    # ../common/optional/gnome.nix # Desktop Environment
     # ../common/optional/hyprland.nix # Window Manager
     # ../common/optional/disable-nvidia.nix
-
     # ../common/optional/encrypted-root.nix
+
     ../common/optional/pipewire.nix
     ../common/optional/podman.nix
     ../common/optional/docker.nix
@@ -28,9 +28,9 @@
     ../common/optional/fingerprint.nix
     ../common/optional/bluetooth.nix
     ../common/optional/virtual-machine.nix
-    # ../common/optional/samba.nix
     ../common/optional/flatpak.nix
     ../common/optional/default-packages.nix
+    # ../common/optional/samba.nix
   ];
 
   networking = {
