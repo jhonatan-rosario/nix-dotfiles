@@ -20,29 +20,36 @@
           "hyprland/workspaces"
           "hyprland/window"
         ];
+
         modules-center = [
           "clock"
           "custom/notification"
         ];
+
         modules-right = [
-          "tray"
+          "group/group-tray"
           "idle_inhibitor"
           "memory"
           "cpu"
+          "temperature"
           "bluetooth"
           "network"
           "pulseaudio"
           "hyprland/language"
           "battery"
-          "battery#bat2"
-          "custom/power"
+          "group/group-power"
         ];
+
         "hyprland/workspaces" = {
           "on-click" = "activate";
+          "show-special" = true;
+          "sort-by" = "number";
         };
+
         "hyprland/window" = {
-          format = "{class}";
+          format = "{title}";
         };
+
         clock = {
           format = "{:%a %d %b  %H:%M}";
           # tooltip = false;
@@ -54,6 +61,7 @@
           };
           # format-alt = "{:%Y-%m-%d  %H:%M:%S %p}";
         };
+
         "custom/notification" = {
           tooltip = false;
           format = "{icon}";
@@ -67,6 +75,7 @@
             dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
             dnd-inhibited-none = " ";
           };
+
           return-type = "json";
           exec-if = "which swaync-client";
           exec = "swaync-client -swb";
@@ -74,10 +83,12 @@
           on-click = "sleep 0.1; swaync-client -t -sw";
           escape = true;
         };
+
         tray = {
           icon-size = 14;
           spacing = 8;
         };
+
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
@@ -85,34 +96,44 @@
             deactivated = " ";
           };
         };
+
         memory = {
           interval = 30;
-          # format = "{}% ";
-          format = "{}%  ";
+          format = "  {}%";
         };
+
         cpu = {
-          format = "{usage}%  ";
+          format = "  {}%";
         };
+
+        temperature = {
+          format = " {temperatureC}°C";
+          # format-critical = "{temperatureC}°C ";
+        };
+
         network = {
           format = "";
           format-wifi = " ";
           format-ethernet = "󰈀 ";
-          format-disconnected = "󰈂";
+          format-disconnected = "";
           tooltip-format = "{ifname} via {gwaddr} 󰊗 ";
           tooltip-format-wifi = "{essid} ({signalStrength}%)  ";
           tooltip-format-ethernet = "{ifname}  ";
-          tooltip-format-disconnected = "Disconnected";
+          tooltip-format-disconnected = "Desconectado";
         };
+
         bluetooth = {
-          format = "{num_connections} ";
+          format = " {num_connections}";
           format-disabled = "󰂲";
           tooltip-format-connected = "{device_enumerate}\n";
           tooltip-format-enumerate-connected = "{device_alias} {device_battery_percentage}%";
         };
+
         "hyprland/language" = {
           on-click = "hyprctl switchxkblayout at-translated-set-2-keyboard next";
           format = "{shortDescription}";
         };
+
         pulseaudio = {
           format = "{volume}% {icon} {format_source}";
           format-bluetooth = "{volume}% {icon} {format_source}";
@@ -133,6 +154,7 @@
               ""
             ];
           };
+
           ignored-sinks = [
             "Easy Effects Sink"
             "Easy Effects"
@@ -140,58 +162,121 @@
           ];
           on-click = "pavucontrol";
         };
+
         battery = {
           states = {
             warning = 30;
             critical = 15;
           };
+
           format = "{capacity}% {icon}";
-          format-charging = "{capacity}% 󱐋 ";
-          format-plugged = "{capacity}%  ";
           format-alt = "{time} {icon}";
-          format-icons = [
-            " "
-            " "
-            " "
-            " "
-            " "
-          ];
-        };
-        "battery#bat2" = {
-          states = {
-            warning = 30;
-            critical = 15;
+          format-icons = {
+            default = [
+              "󰂎"
+              "󰁺"
+              "󰁻"
+              "󰁼"
+              "󰁽"
+              "󰁾"
+              "󰁿"
+              "󰂀"
+              "󰂁"
+              "󰂂"
+              "󰁹"
+            ];
+            charging = [
+              "󰢟"
+              "󰢜"
+              "󰂆"
+              "󰂇"
+              "󰂈"
+              "󰢝"
+              "󰂉"
+              "󰢞"
+              "󰂊"
+              "󰂋"
+              "󰂅"
+            ];
           };
-          format = "{capacity}% {icon}";
-          format-charging = "{capacity}% 󱐋 ";
-          format-plugged = "{capacity}%  ";
-          format-alt = "{time} {icon}";
-          format-icons = [
-            " "
-            " "
-            " "
-            " "
-            " "
-          ];
-          bat = "BAT2";
         };
-        "custom/power" = {
-          format = "⏻ ";
+
+        # "custom/power" = {
+        #   format = "⏻ ";
+        #   tooltip = false;
+        #   on-click = "wlogout --protocol layer-shell";
+        # };
+
+        "group/group-tray" = {
+          "orientation" = "inherit";
+          "drawer" = {
+            "click-to-reveal" = true;
+            "transition-duration" = 500;
+            "children-class" = "not-tray";
+            "transition-left-to-right" = false;
+          };
+
+          modules = [
+            "custom/expand-tray"
+            "tray"
+          ];
+        };
+
+        "custom/expand-tray" = {
+          format = "{icon}";
+          "format-icons" = {
+            "default" = "";
+          };
+        };
+
+        "group/group-power" = {
+          "orientation" = "inherit";
+          "drawer" = {
+            "transition-duration" = 500;
+            "children-class" = "not-power";
+            "transition-left-to-right" = false;
+          };
+          modules = [
+            "custom/power" # First element is the "group leader" and won't ever be hidden
+            "custom/quit"
+            "custom/lock"
+            "custom/reboot"
+          ];
+        };
+
+        "custom/quit" = {
+          format = "󰗼";
           tooltip = false;
-          on-click = "wlogout --protocol layer-shell";
+          "on-click" = "hyprctl dispatch exit";
+        };
+
+        "custom/lock" = {
+          format = "󰍁";
+          tooltip = false;
+          "on-click" = "hyprlock";
+        };
+
+        "custom/reboot" = {
+          format = "󰜉";
+          tooltip = false;
+          "on-click" = "reboot";
+        };
+
+        "custom/power" = {
+          format = "";
+          tooltip = false;
+          "on-click" = "shutdown now";
         };
       }
     ];
-    # 11111b
-    style = let
-      inherit (nix-colors.lib.conversions) hexToRGBString;
-      inherit (config.colorscheme) palette;
-      toRGBA = color: opacity: ''rgba(${hexToRGBString "," (lib.removePrefix "#" color)},${opacity})'';
-    in
-      /*
-      CSS
-      */
-      ''
+
+    style =
+      let
+        inherit (nix-colors.lib.conversions) hexToRGBString;
+        inherit (config.colorscheme) palette;
+        toRGBA = color: opacity: "rgba(${hexToRGBString "," (lib.removePrefix "#" color)},${opacity})";
+      in
+      /* CSS */ ''
         * {
             min-height: 0;
             font-family: 'JetBrainsMono Nerd Font';
@@ -200,11 +285,11 @@
 
         window#waybar {
             /*background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.80) 100%);*/
-            background: ${toRGBA palette.base01 "0.7"}; 
+            background: ${toRGBA palette.base01 "0.95"}; 
             box-shadow: 0 0 4px #11111b;
             border-radius: 10px;
             margin: 6px;
-            padding: 2px;
+            padding: 4px;
             color: #ffffff;
             transition-property: background-color;
             transition-duration: .5s;
@@ -215,7 +300,7 @@
         }
 
         #workspaces {
-            margin-left: 2px;
+            margin-left: 5px;
         }
 
         #workspaces button {
@@ -248,18 +333,6 @@
             color: #90b1b1;
         }
 
-        #idle_inhibitor.activated {
-            border-radius: 2px;
-            background-color: #ecf0f1;
-            color: #2d3436;
-            margin: 5px 0;
-            border-left: 3px solid #ecf0f1;
-        }
-
-        #battery {
-            margin-right: 6px;
-        }
-
         #battery.charging,
         #battery.plugged {
             color: #2daf7b;
@@ -280,6 +353,19 @@
             animation-iteration-count: infinite;
             animation-direction: alternate;
         }
+
+        #group-power {
+          margin-right: 10px;
+        }
+
+        #custom-expand-tray,
+        #custom-power, 
+        #custom-lock, 
+        #custom-reboot, 
+        #custom-quit {
+          padding: 0px 10px;
+        }
+
       '';
   };
 }

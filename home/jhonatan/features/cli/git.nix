@@ -5,6 +5,7 @@
     settings = {
       user.name = "Jhonatan Rosário";
       user.email = "contato@devjhon.com";
+      init.defaultBranch = "main";
     };
   };
 }

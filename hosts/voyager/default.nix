@@ -13,10 +13,10 @@
 
     ../common/global
     ../common/users/jhonatan
-    ../common/optional/gnome.nix # Desktop Environment
+    ../common/optional/hyprland.nix # Window Manager
 
+    # ../common/optional/gnome.nix # Desktop Environment
     # ../common/optional/plasma.nix # Desktop Environment
-    # ../common/optional/hyprland.nix # Window Manager
     # ../common/optional/disable-nvidia.nix
     # ../common/optional/encrypted-root.nix
 
@@ -29,6 +29,7 @@
     ../common/optional/bluetooth.nix
     ../common/optional/virtual-machine.nix
     ../common/optional/flatpak.nix
+    ../common/optional/openvpn.nix
     ../common/optional/default-packages.nix
     # ../common/optional/samba.nix
   ];
@@ -52,18 +53,19 @@
   };
 
   # Lid settings
-  # services.logind = {
-  # lidSwitch = "suspend";
-  # lidSwitchExternalPower = "lock";
-  # powerKey = "ignore";
-  #extraConfig = ''
-  #  # don’t shutdown when power button is short-pressed
-  #  HandlePowerKey=ignore
-  #  HandleLidSwitch=hibernate
-  #  HandleLidSwitchDocked=ignore
-  #  HandleLidSwitchExternalPower=lock
-  #'';
-  #};
+  services.logind.settings.Login = {
+    HandlePowerKey = "hibernate";
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchExternalPower = "lock";
+    HandleLidSwitchDocked = "ignore";
+    # extraConfig = ''
+    #   # don’t shutdown when power button is short-pressed
+    #   HandlePowerKey=ignore
+    #   HandleLidSwitch=hibernate
+    #   HandleLidSwitchDocked=ignore
+    #   HandleLidSwitchExternalPower=ignore
+    # '';
+  };
 
   hardware.graphics = {
     enable = true;

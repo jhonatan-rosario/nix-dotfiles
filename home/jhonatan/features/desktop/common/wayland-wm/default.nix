@@ -1,16 +1,19 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./alacritty.nix
     ./imv.nix
     ./cliphist.nix
-    # ./mako.nix
     ./swaync.nix
     ./swayosd.nix
-    ./waybar.nix
-    ./anyrun.nix
     ./wlogout.nix
-    # ./swayidle.nix
-    # ./swaylock.nix
+    ./zathura.nix
+    ./vicinae.nix
+    ./udiskie.nix
+    ./waybar.nix
+    ./yazi.nix
+    ./ghostty.nix
+    # ./ashell.nix
   ];
 
   xdg.mimeApps.enable = true;
@@ -20,13 +23,14 @@
     kdePackages.qt6ct
     nwg-look
     networkmanagerapplet
+    qimgv # Image viewer
+    mpv # Video player
   ];
 
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
     QT_QPA_PLATFORM = "wayland";
-    # LIBSEAT_BACKEND = "logind";
   };
 
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-wlr];
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
 }

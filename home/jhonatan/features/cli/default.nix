@@ -6,9 +6,8 @@
     ./nh.nix
     ./git.nix
     ./distrobox.nix
-    # ./nushell.nix
+    ./rclone.nix
     # ./nix-alien.nix
-    # ./bat.nix
     # ./direnv.nix
     # ./gh.nix
     # ./gpg.nix
@@ -26,6 +25,8 @@
     comma # Install and run programs by sticking a , before them
     #distrobox # Nice escape hatch, integrates docker images with my environment
 
+    wget # Download files from the internet
+
     bc # Calculator
     bottom # System viewer
     ncdu # TUI disk usage
@@ -34,13 +35,15 @@
     fd # Better find
     httpie # Better curl
     diffsitter # Better diff
+    bat # Better cat
+    btop # Better htop
     jq # JSON pretty printer and manipulator
     # trekscii # Cute startrek cli printerc
     timer # To help with my ADHD paralysis
 
     nixd # Nix LSP
     alejandra # Nix formatter
-    nixfmt
+    nixfmt # Nix formatter
     nvd # Differ
     nix-diff # Differ, more detailed
     nix-output-monitor
@@ -51,5 +54,6 @@
     bitwarden-cli
 
     wf-recorder # screen record
+    cmatrix # Matrix rain
   ];
 }

@@ -14,6 +14,7 @@ in
     ./playerctl.nix
     ./gtk.nix
     ./qt.nix
+    ./onlyoffice.nix
     ./brave.nix
     ./obsidian.nix
     # ./vscode.nix
@@ -25,7 +26,8 @@ in
     remmina
     antigravity-nix
     jetbrains.datagrip
-    winboat
+    # winboat
+    # zed-editor-fhs
     # bitwarden-desktop # Problemea no build versão 2026.2.1
     # antigravity
     # dbeaver-bin

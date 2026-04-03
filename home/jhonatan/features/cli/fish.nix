@@ -9,8 +9,9 @@ let
   hasPackage = name: lib.any (x: x == name) packageNames;
   hasRipgrep = hasPackage "ripgrep";
   hasEza = hasPackage "eza";
+  hasBat = hasPackage "bat";
+  hasBtop = hasPackage "btop";
   hasNeovim = config.programs.neovim.enable;
-  hasEmacs = config.programs.emacs.enable;
   hasNeomutt = config.programs.neomutt.enable;
 in
 {
@@ -43,11 +44,6 @@ in
         hm = "home-manager --flake ${flakePath}";
         hms = "home-manager --flake ${flakePath} switch";
 
-        ls = mkIf hasEza "eza";
-        exa = ls;
-
-        e = mkIf hasEmacs "emacsclient -t";
-
         vim = mkIf hasNeovim "nvim";
         vi = vim;
         v = vim;
@@ -60,6 +56,10 @@ in
         # Clear screen and scrollback
         cls = "printf '\\033[2J\\033[3J\\033[1;1H'";
         flutterShell = "nix develop -c $SHELL ${flakePath}";
+        ls = mkIf hasEza "eza";
+        cat = mkIf hasBat "bat";
+        top = mkIf hasBtop "btop";
+        htop = "top";
       };
       # functions = {
       #   # Disable greeting

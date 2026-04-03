@@ -5,7 +5,8 @@
   outputs,
   inputs,
   ...
-}: let
+}:
+let
   getHostname = x: lib.last (lib.splitString "@" x);
   # remoteColorschemes =
   #   lib.mapAttrs' (n: v: {
@@ -16,25 +17,29 @@
   inherit (config.colorscheme) palette;
   rgb = color: "rgb(${lib.removePrefix "#" color})";
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
-in {
+in
+{
   imports = [
     ../common
     ../common/wayland-wm
-
     ./basic-binds.nix
-    ./hyprbars.nix
-    ./hyprexpo.nix
+
+    # ./hyprbars.nix
+    # ./hyprexpo.nix
     ./hyprpaper.nix
     ./hyprlock.nix
     ./hypridle.nix
   ];
 
-  xdg.portal = {
-    extraPortals = [pkgs.xdg-desktop-portal-wlr];
-    config.hyprland = {
-      default = ["wlr" "gtk"];
-    };
-  };
+  # xdg.portal = {
+  #   extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+  #   config.hyprland = {
+  #     default = [
+  #       "wlr"
+  #       "gtk"
+  #     ];
+  #   };
+  # };
 
   home.packages = with pkgs; [
     grimblast
@@ -45,29 +50,19 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd = {
-      enable = true;
-      # Same as default, but stop graphical-session too
-      extraCommands = lib.mkBefore [
-        "systemctl --user stop graphical-session.target"
-        "systemctl --user start hyprland-session.target"
-      ];
+      enable = false;
     };
 
     settings = {
       general = {
-        # misterio
-        # gaps_in = 15;
-        # gaps_out = 20;
         # border_size = 2;
         "col.active_border" = rgb palette.base07;
         "col.inactive_border" = rgb palette.base04;
         # allow_tearing = true;
 
-        gaps_in = 3;
-        gaps_out = 4;
-        border_size = 3;
-        # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        # "col.inactive_border" = "rgba(595959aa)";
+        gaps_in = 4;
+        gaps_out = 6;
+        border_size = 2;
         allow_tearing = true;
         layout = "dwindle";
         resize_on_border = true;
@@ -76,13 +71,10 @@ in {
       exec-once = [
         "hyprpaper"
         "swayosd-server"
-        "wl-paste --type text --watch cliphist store" # Stores only text data
+        # "wl-paste --type text --watch cliphist store" # Stores only text data
       ];
 
-      monitor = [
-        "eDP-1, 1920x1080@120, 0x0, 1"
-        "HDMI-A-1, highres@highrr, auto-right, 1"        
-      ];
+      monitor = ", highres@highrr, auto, 1";
 
       cursor.inactive_timeout = 4;
       group = {
@@ -136,48 +128,43 @@ in {
         focus_on_activate = true;
         key_press_enables_dpms = true;
         # Unfullscreen when opening something
-        new_window_takes_over_fullscreen = 2;
+        # new_window_takes_over_fullscreen = 2;
+        on_focus_under_fullscreen = 2;
       };
 
-      windowrulev2 = let
-        # sweethome3d-tooltips = "title:^(win[0-9])$,class:^(com-eteks-sweethome3d-SweetHome3DBootstrap)$";
-        xembedsniproxy = "class:^()$,title:^()$,xwayland:1,floating:1";
-        # steam = "title:^()$,class:^(steam)$";
-        # steamGame = "class:^(steam_app_[0-9]*)$";
-        # kdeconnect-pointer = "class:^(org.kdeconnect.daemon)$";
-        anydesk = "class:^(Anydesk)$,title:^(anydesk)$";
-      in [
-        "float, ${anydesk}"
-        # "nofocus, ${sweethome3d-tooltips}"
-
-        "noblur, ${xembedsniproxy}"
-        # "opacity 0, ${xembedsniproxy}"
-        # "noinitialfocus, ${xembedsniproxy}"
-        # "workspace special, ${xembedsniproxy}"
-      ];
+      # windowrule =
+      #   let
+      #     xembedsniproxy = "class:^()$,title:^()$,xwayland:1,floating:1";
+      #     anydesk = "class:^(Anydesk)$,title:^(anydesk)$";
+      #   in
+      #   [
+      #     "float, ${anydesk}"
+      #     "noblur, ${xembedsniproxy}"
+      #   ];
       # ++ (lib.mapAttrsToList (name: colors:
       #   "bordercolor ${rgba colors.primary "aa"} ${rgba colors.primary_container "aa"}, title:^(\\[${name}\\])"
       # ) remoteColorschemes);
+
       layerrule = [
-        "animation fade,hyprpicker"
-        "animation fade,selection"
+        "animation fade, match:namespace hyprpicker"
+        "animation fade, match:namespace selection"
 
-        "animation fade,waybar"
-        "blur,waybar"
-        "ignorezero,waybar"
+        # "noanim, ^(volume_osd)$"
+        # "noanim, ^(brightness_osd)$"
+        # "noanim, hyprpicker"
 
-        "blur,notifications"
-        "ignorezero,notifications"
+        "animation fade, match:namespace waybar"
+        "blur on, match:namespace waybar"
+        "ignore_alpha 0, match:namespace waybar"
 
-        # "blur,wofi"
-        # "ignorezero,wofi"
-
-        # "noanim,wallpaper"
+        "blur on, match:namespace notifications"
+        "ignore_alpha 0, match:namespace notifications"
+        "no_anim on, match:namespace wallpaper"
       ];
 
       decoration = {
         active_opacity = 1.0;
-        inactive_opacity = 0.85;
+        inactive_opacity = 1.0;
         fullscreen_opacity = 1.0;
         rounding = 7;
 
@@ -204,11 +191,6 @@ in {
           offset = "3 3";
         };
 
-        # drop_shadow = true;
-        # shadow_range = 12;
-        # shadow_offset = "3 3";
-        # "col.shadow" = "0x44000000";
-        # "col.shadow_inactive" = "0x66000000";
       };
       animations = {
         enabled = true;
@@ -246,155 +228,59 @@ in {
         "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
       ];
 
-      bindr = let
-        osd = lib.getExe' pkgs.swayosd "swayosd-client";
-      in [
-        "CAPS,Caps_Lock,exec,${osd} --caps-lock"
-      ];
+      bindr =
+        let
+          osd = lib.getExe' pkgs.swayosd "swayosd-client";
+        in
+        [
+          "CAPS,Caps_Lock,exec,${osd} --caps-lock"
+        ];
 
-      bind = let
-        wlogout = lib.getExe pkgs.wlogout;
-        grimblast = lib.getExe pkgs.grimblast;
-        osd = lib.getExe' pkgs.swayosd "swayosd-client";
-        defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
-      in [
-        # Power menu
-        ",XF86PowerOff,exec,${wlogout} --protocol layer-shell"
-        # Lock
-        "SUPER,ESCAPE,exec,pidof hyprlock || hyprlock"
-        # Hyprpicker
-        "SUPERSHIFT,c,exec,hyprpicker -a"
-        # Program bindings
-        "SUPER,RETURN,exec,${defaultApp "x-scheme-handler/terminal"}"
-        "SUPER,e,exec,${defaultApp "text/plain"}"
-        "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
-        "ALT_L,SPACE,exec,pkill anyrun || anyrun"
-        "SUPER,v,exec,pkill anyrun || cliphist list | anyrun --show-results-immediately true --plugins ${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so | cliphist decode | wl-copy"
-        # Brightness control (only works if the system has lightd)
-        ",XF86MonBrightnessUp,exec,${osd} --brightness raise"
-        ",XF86MonBrightnessDown,exec,${osd} --brightness lower"
-        # Volume
-        ",XF86AudioRaiseVolume,exec,${osd} --output-volume raise"
-        ",XF86AudioLowerVolume,exec,${osd} --output-volume lower"
-        ",XF86AudioMute,exec,${osd} --output-volume mute-toggle"
-        "SHIFT,XF86AudioRaiseVolume,exec,${osd} --output-volume raise"
-        "SHIFT,XF86AudioLowerVolume,exec,${osd} --output-volume lower"
-        "SHIFT,XF86AudioMute,exec,${osd} --output-volume mute-toggle"
-        ",XF86AudioMicMute,exec,${osd} --input-volume mute-toggle"
-        # Screenshotting
-        ",Print,exec,${grimblast} --notify --freeze copy area"
-        "SHIFT,Print,exec,${grimblast} --notify --freeze copy output"
+      bind =
+        let
+          wlogout = lib.getExe pkgs.wlogout;
+          grimblast = lib.getExe pkgs.grimblast;
+          osd = lib.getExe' pkgs.swayosd "swayosd-client";
+          defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
+        in
+        [
+          # Power menu
+          # ",XF86PowerOff,exec,${wlogout} --protocol layer-shell"
+          # Lock
+          "SUPER,l,exec,pidof hyprlock || hyprlock"
+          # Hyprpicker
+          "SUPERSHIFT,c,exec,hyprpicker -a"
+          # Program bindings
+          "SUPER,RETURN,exec,${defaultApp "x-scheme-handler/terminal"}"
+          "SUPER,e,exec,${defaultApp "text/plain"}"
+          "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
+          "ALT_L,SPACE,exec,vicinae toggle"
+          "SUPER,v,exec,vicinae vicinae://extensions/vicinae/clipboard/history?toggle=true"
+          # Brightness control (only works if the system has lightd)
+          ",XF86MonBrightnessUp,exec,${osd} --brightness raise"
+          ",XF86MonBrightnessDown,exec,${osd} --brightness lower"
+          # Volume
+          ",XF86AudioRaiseVolume,exec,${osd} --output-volume raise"
+          ",XF86AudioLowerVolume,exec,${osd} --output-volume lower"
+          ",XF86AudioMute,exec,${osd} --output-volume mute-toggle"
+          "SHIFT,XF86AudioRaiseVolume,exec,${osd} --output-volume raise"
+          "SHIFT,XF86AudioLowerVolume,exec,${osd} --output-volume lower"
+          "SHIFT,XF86AudioMute,exec,${osd} --output-volume mute-toggle"
+          ",XF86AudioMicMute,exec,${osd} --input-volume mute-toggle"
+          # Screenshotting
+          ",Print,exec,${grimblast} --notify --freeze copy area"
+          "SHIFT,Print,exec,${grimblast} --notify --freeze copy output"
 
-        # Hyprexpo Plugin
-        "ALT_L,TAB,hyprexpo:expo,toggle"
-      ];
-      #   ++ (
-      #     let
-      #       playerctl = lib.getExe' config.services.playerctld.package "playerctl";
-      #       playerctld = lib.getExe' config.services.playerctld.package "playerctld";
-      #     in
-      #       lib.optionals config.services.playerctld.enable [
-      #         # Media control
-      #         ",XF86AudioNext,exec,${playerctl} next"
-      #         ",XF86AudioPrev,exec,${playerctl} previous"
-      #         ",XF86AudioPlay,exec,${playerctl} play-pause"
-      #         ",XF86AudioStop,exec,${playerctl} stop"
-      #         "SHIFT,XF86AudioNext,exec,${playerctld} shift"
-      #         "SHIFT,XF86AudioPrev,exec,${playerctld} unshift"
-      #         "SHIFT,XF86AudioPlay,exec,systemctl --user restart playerctld"
-      #       ]
-      #   )
-      #   ++
-      #   # Screen lock
-      #   (
-      #     let
-      #       swaylock = lib.getExe config.programs.swaylock.package;
-      #     in
-      #       lib.optionals config.programs.swaylock.enable [
-      #         "SUPER,backspace,exec,${swaylock} -S --grace 2 --grace-no-mouse"
-      #         "SUPER,XF86Calculator,exec,${swaylock} -S --grace 2 --grace-no-mouse"
-      #       ]
-      #   )
-      # ++
-      # Notification manager
-      # (
-      #   let
-      #     makoctl = lib.getExe' config.services.mako.package "makoctl";
-      #   in
-      #     lib.optionals config.services.mako.enable [
-      #       "SUPER,w,exec,${makoctl} dismiss"
-      #       "SUPERSHIFT,w,exec,${makoctl} restore"
-      #     ]
-      # );
-      #   ++
-      #   # Launcher
-      #   (
-      #     let
-      #       wofi = lib.getExe config.programs.wofi.package;
-      #     in
-      #       lib.optionals config.programs.wofi.enable [
-      #         "SUPER,x,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
-      #         "SUPER,s,exec,specialisation $(specialisation | ${wofi} -S dmenu)"
-      #         "SUPER,d,exec,${wofi} -S run"
-
-      #         "SUPERALT,x,exec,${remote} ${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
-      #         "SUPERALT,d,exec,${remote} ${wofi} -S run"
-      #       ]
-      #       ++ (
-      #         let
-      #           pass-wofi = lib.getExe (pkgs.pass-wofi.override {pass = config.programs.password-store.package;});
-      #         in
-      #           lib.optionals config.programs.password-store.enable [
-      #             ",XF86Calculator,exec,${pass-wofi}"
-      #             "SHIFT,XF86Calculator,exec,${pass-wofi} fill"
-
-      #             "SUPER,semicolon,exec,${pass-wofi}"
-      #             "SHIFTSUPER,semicolon,exec,${pass-wofi} fill"
-      #           ]
-      #       ) ++ (
-      #         let
-      #           cliphist = lib.getExe config.services.cliphist.package;
-      #         in
-      #         lib.optionals config.services.cliphist.enable [
-      #           ''SUPER,c,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
-      #         ]
-      #       )
-      #   );
-
-      # monitor = let
-      #   waybarSpace = let
-      #     inherit (config.wayland.windowManager.hyprland.settings.general) gaps_in gaps_out;
-      #     inherit (config.programs.waybar.settings.primary) position height width;
-      #     gap = gaps_out - gaps_in;
-      #   in {
-      #     top = if (position == "top") then height + gap else 0;
-      #     bottom = if (position == "bottom") then height + gap else 0;
-      #     left = if (position == "left") then width + gap else 0;
-      #     right = if (position == "right") then width + gap else 0;
-      #   };
-      # in
-      #   [
-      #     ",addreserved,${toString waybarSpace.top},${toString waybarSpace.bottom},${toString waybarSpace.left},${toString waybarSpace.right}"
-      #   ]
-      #   ++ (map (
-      #     m: "${m.name},${
-      #       if m.enabled
-      #       then "${toString m.width}x${toString m.height}@${toString m.refreshRate},${m.position},1"
-      #       else "disable"
-      #     }"
-      #   ) (config.monitors));
-
-      # workspace = map (m: "name:${m.workspace},monitor:${m.name}") (
-      #   lib.filter (m: m.enabled && m.workspace != null) config.monitors
-      # );
+          # Hyprexpo Plugin
+          # "ALT_L,TAB,hyprexpo:expo,toggle"
+        ];
+      extraConfig = ''
+        # Passthrough mode (e.g. for VNC)
+        bind=SUPER,P,submap,passthrough
+        submap=passthrough
+        bind=SUPER,P,submap,reset
+        submap=reset
+      '';
     };
-    # This is order sensitive, so it has to come here.
-    extraConfig = ''
-      # Passthrough mode (e.g. for VNC)
-      bind=SUPER,P,submap,passthrough
-      submap=passthrough
-      bind=SUPER,P,submap,reset
-      submap=reset
-    '';
   };
 }

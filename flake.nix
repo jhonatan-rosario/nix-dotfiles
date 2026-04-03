@@ -3,13 +3,9 @@
 
   nixConfig = {
     builders-use-substitutes = true;
-    extra-substituters = [
-      "https://anyrun.cachix.org"
-    ];
+    extra-substituters = [ ];
 
-    extra-trusted-public-keys = [
-      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
-    ];
+    extra-trusted-public-keys = [ ];
   };
 
   inputs = {
@@ -36,11 +32,6 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    anyrun = {
-      url = "github:anyrun-org/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
     antigravity-nix = {
@@ -63,7 +54,6 @@
       plasma-manager,
       nix-colors,
       nix-flatpak,
-      anyrun,
       antigravity-nix,
       ...
     }@inputs:
