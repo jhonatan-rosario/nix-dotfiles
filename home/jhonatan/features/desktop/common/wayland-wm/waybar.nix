@@ -4,6 +4,12 @@
   nix-colors,
   ...
 }:
+let
+  packageNames = map (p: p.pname or p.name or null) config.home.packages;
+  hasPackage = name: lib.any (x: x == name) packageNames;
+  hasSwaync = hasPackage "swaync";
+  hasHyprShutdown = hasPackage "hyprshutdown";
+in
 {
   systemd.user.services.waybar = {
     Unit.StartLimitBurst = 30;
@@ -29,6 +35,7 @@
         modules-right = [
           "group/group-tray"
           "idle_inhibitor"
+          "power-profiles-daemon"
           "memory"
           "cpu"
           "temperature"
@@ -47,7 +54,7 @@
         };
 
         "hyprland/window" = {
-          format = "{title}";
+          format = "{initialTitle}";
         };
 
         clock = {
@@ -97,8 +104,20 @@
           };
         };
 
+        power-profiles-daemon = {
+          format = "{icon}";
+          tooltip-format = "Modo: {profile}\nClique para alterar";
+          tooltip = true;
+          format-icons = {
+            default = "󰠠 ";
+            performance = " ";
+            balanced = " ";
+            power-saver = " ";
+          };
+        };
+
         memory = {
-          interval = 30;
+          interval = 10;
           format = "  {}%";
         };
 
@@ -201,12 +220,6 @@
           };
         };
 
-        # "custom/power" = {
-        #   format = "⏻ ";
-        #   tooltip = false;
-        #   on-click = "wlogout --protocol layer-shell";
-        # };
-
         "group/group-tray" = {
           "orientation" = "inherit";
           "drawer" = {
@@ -247,7 +260,7 @@
         "custom/quit" = {
           format = "󰗼";
           tooltip = false;
-          "on-click" = "hyprctl dispatch exit";
+          "on-click" = if hasHyprShutdown then "hyprshutdown -t 'Saindo..." else "hyprctl dispatch exit";
         };
 
         "custom/lock" = {
@@ -259,13 +272,18 @@
         "custom/reboot" = {
           format = "󰜉";
           tooltip = false;
-          "on-click" = "reboot";
+          "on-click" =
+            if hasHyprShutdown then "hyprshutdown -t 'Reiniciando...' --post-cmd 'reboot'" else "reboot";
         };
 
         "custom/power" = {
           format = "";
           tooltip = false;
-          "on-click" = "shutdown now";
+          "on-click" =
+            if hasHyprShutdown then
+              "hyprshutdown -t 'Desligando...' --post-cmd 'shutdown -P 0'"
+            else
+              "shutdown now";
         };
       }
     ];

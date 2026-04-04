@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   i18n = {
-    defaultLocale = lib.mkDefault "pt_BR.UTF-8";
+    defaultLocale = "pt_BR.UTF-8";
     extraLocaleSettings = {
       LC_ADDRESS = "pt_BR.UTF-8";
       LC_IDENTIFICATION = "pt_BR.UTF-8";
@@ -13,14 +13,14 @@
       LC_TELEPHONE = "pt_BR.UTF-8";
       LC_TIME = "pt_BR.UTF-8";
     };
-    supportedLocales = lib.mkDefault [
+    supportedLocales = [
       "pt_BR.UTF-8/UTF-8"
       "en_US.UTF-8/UTF-8"
     ];
   };
 
   location.provider = "geoclue2";
-  time.timeZone = lib.mkDefault "America/Sao_Paulo";
+  time.timeZone = "America/Sao_Paulo";
 
   services.xserver = {
     xkb.layout = "us,br";

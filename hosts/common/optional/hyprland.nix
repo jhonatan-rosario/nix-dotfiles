@@ -1,5 +1,13 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
+  packageNames = map (p: p.pname or p.name or null) config.home.packages;
+  hasPackage = name: lib.any (x: x == name) packageNames;
+  hasHyprshutdown = hasPackage "hyprshutdown";
   # sway-kiosk = command: "${lib.getExe pkgs.sway} --unsupported-gpu --config ${pkgs.writeText "kiosk.config" ''
   #   output * bg #000000 solid_color
   #   xwayland disable
@@ -16,11 +24,11 @@ let
     # monitor=DP-1, 2560x1440@144, 1920x0, 1
 
     # Dica: Desativar a tela secundária no login evita o bug de centralização
-    monitor=, preferred, auto, 1, mirror, eDP-1
+    monitor=, highres@auto, auto, 1, mirror
 
-    exec-once = ${pkgs.regreet}/bin/regreet; hyprctl dispatch exit
-    windowrule = fullscreen on, class:^(regreet)$
-    windowrule = center on, class:^(regreet)$
+    exec-once = ${pkgs.regreet}/bin/regreet; hyprshutdown
+    windowrule = fullscreen on, match:class ^(regreet)$
+    windowrule = center on, match:class ^(regreet)$
   '';
 in
 {
@@ -31,13 +39,9 @@ in
     xwayland.enable = true; # Xwayland can be disabled.
   };
 
-  # services.xserver = {
-  #   enable = true;
-  #   displayManager.lightdm.enable = true;
-  # };
-
   environment.systemPackages = with pkgs; [
     kitty # required for the default Hyprland config
+    hyprshutdown
     adwaita-icon-theme
     gnome-themes-extra # Optional: for extra GTK theme support
   ];

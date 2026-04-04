@@ -24,22 +24,10 @@ in
     ../common/wayland-wm
     ./basic-binds.nix
 
-    # ./hyprbars.nix
-    # ./hyprexpo.nix
     ./hyprpaper.nix
     ./hyprlock.nix
     ./hypridle.nix
   ];
-
-  # xdg.portal = {
-  #   extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
-  #   config.hyprland = {
-  #     default = [
-  #       "wlr"
-  #       "gtk"
-  #     ];
-  #   };
-  # };
 
   home.packages = with pkgs; [
     grimblast
@@ -55,13 +43,11 @@ in
 
     settings = {
       general = {
-        # border_size = 2;
         "col.active_border" = rgb palette.base07;
         "col.inactive_border" = rgb palette.base04;
-        # allow_tearing = true;
 
-        gaps_in = 4;
-        gaps_out = 6;
+        gaps_in = 8;
+        gaps_out = 10;
         border_size = 2;
         allow_tearing = true;
         layout = "dwindle";
@@ -86,7 +72,7 @@ in
         groupbar.font_size = 11;
 
         groupbar = {
-          height = 4;
+          height = 8;
           render_titles = false;
           "col.active" = rgb palette.base0E;
           "col.inactive" = rgba palette.base0E "80"; # 50%
@@ -129,7 +115,6 @@ in
         focus_on_activate = true;
         key_press_enables_dpms = true;
         # Unfullscreen when opening something
-        # new_window_takes_over_fullscreen = 2;
         on_focus_under_fullscreen = 2;
       };
 
@@ -177,14 +162,6 @@ in
           ignore_opacity = true;
           popups = true;
         };
-
-        #artazol
-        # blur {
-        #   enabled = true
-        #   size = 20
-        #   passes = 3
-        #   new_optimizations=true
-        # }
 
         shadow = {
           enabled = true;
@@ -274,6 +251,11 @@ in
 
           # Hyprexpo Plugin
           # "ALT_L,TAB,hyprexpo:expo,toggle"
+
+          # Atalhos de teclado para perfis de energia
+          "SUPER,F1,exec,powerprofilesctl set power-saver"
+          "SUPER,F2,exec,powerprofilesctl set balanced"
+          "SUPER,F3,exec,powerprofilesctl set performance"
         ];
       extraConfig = ''
         # Passthrough mode (e.g. for VNC)
