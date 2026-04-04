@@ -71,6 +71,7 @@ in
       exec-once = [
         "hyprpaper"
         "swayosd-server"
+        "ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false"
         # "wl-paste --type text --watch cliphist store" # Stores only text data
       ];
 
@@ -251,7 +252,7 @@ in
           # Hyprpicker
           "SUPERSHIFT,c,exec,hyprpicker -a"
           # Program bindings
-          "SUPER,RETURN,exec,${defaultApp "x-scheme-handler/terminal"}"
+          "SUPER,RETURN,exec,ghostty +new-window"
           "SUPER,e,exec,${defaultApp "text/plain"}"
           "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
           "ALT_L,SPACE,exec,vicinae toggle"
