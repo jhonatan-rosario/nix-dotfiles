@@ -14,6 +14,15 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     systems.url = "github:nix-systems/default-linux";
 
+    # Hardware
+    hardware.url = "github:nixos/nixos-hardware/master";
+
+    # Home manager
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,15 +31,12 @@
 
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-colors.url = "github:misterio77/nix-colors";
-
-    hardware.url = "github:nixos/nixos-hardware/master";
-
-    # systems.url = "github:nix-systems/default-linux";
-
-    # Home manager
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
@@ -39,10 +45,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # caelestia-shell = {
-    #   url = "github:caelestia-dots/shell";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
 
   outputs =
@@ -52,6 +54,7 @@
       systems,
       home-manager,
       plasma-manager,
+      sops-nix,
       nix-colors,
       nix-flatpak,
       antigravity-nix,
@@ -107,6 +110,7 @@
       nixosConfigurations = {
         voyager = lib.nixosSystem {
           modules = [
+            sops-nix.nixosModules.sops
             ./hosts/voyager
           ];
           specialArgs = {

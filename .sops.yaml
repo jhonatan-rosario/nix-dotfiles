@@ -1,0 +1,12 @@
+keys:
+  - &users:
+    - &jhonatan age15dq2a8e55js4vtug2vl2g6hu6dg5ufmpf7gvdxzjlfz3unr64deq2sxu79
+  - &hosts:
+    - &voyager age1ljc8d3zg6taqjjepqghg2k9z8ftn20vxvlld7mec86dsz790pymqwvhthn
+
+creation_rules:
+  - path_regex: secrets/.*\.ya?ml$
+    key_groups:
+      - age:
+        - *jhonatan
+        - *voyager

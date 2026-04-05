@@ -15,6 +15,7 @@
     ./nix-ld.nix
     ./networking.nix
     ./resolved.nix
+    ./sops.nix
     # ./fonts.nix
   ]
   ++ (builtins.attrValues outputs.nixosModules);
