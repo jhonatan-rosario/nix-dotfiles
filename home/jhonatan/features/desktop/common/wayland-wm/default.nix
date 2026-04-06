@@ -3,13 +3,14 @@
   imports = [
     ./imv.nix
     ./cliphist.nix
-    ./swaync.nix
-    ./swayosd.nix
-    ./wlogout.nix
     ./zathura.nix
-    ./vicinae.nix
     ./udiskie.nix
-    ./waybar.nix
+    ./noctalia.nix
+    # ./wlogout.nix
+    # ./swayosd.nix
+    # ./swaync.nix
+    # ./vicinae.nix
+    # ./waybar.nix
     ./yazi.nix
     ./ghostty.nix
     # ./ashell.nix

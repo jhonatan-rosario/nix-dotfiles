@@ -18,6 +18,7 @@
     ./sops.nix
     ./tpm.nix
     ./fonts.nix
+    ./upower.nix
   ]
   ++ (builtins.attrValues outputs.nixosModules);
 

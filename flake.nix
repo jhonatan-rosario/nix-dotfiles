@@ -3,9 +3,11 @@
 
   nixConfig = {
     builders-use-substitutes = true;
-    extra-substituters = [ ];
+    extra-substituters = [ "https://noctalia.cachix.org" ];
 
-    extra-trusted-public-keys = [ ];
+    extra-trusted-public-keys = [
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+    ];
   };
 
   inputs = {
@@ -23,13 +25,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -53,7 +53,7 @@
       nixpkgs,
       systems,
       home-manager,
-      plasma-manager,
+      noctalia,
       sops-nix,
       nix-colors,
       nix-flatpak,
@@ -132,8 +132,6 @@
           #   ];
           # };
           modules = [
-            plasma-manager.homeModules.plasma-manager
-            #inputs.anyrun.homeManagerModules.default
             nix-flatpak.homeManagerModules.nix-flatpak
             ./home/jhonatan/voyager.nix
             ./home/jhonatan/nixpkgs.nix
