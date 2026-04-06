@@ -16,7 +16,8 @@
     ./networking.nix
     ./resolved.nix
     ./sops.nix
-    # ./fonts.nix
+    ./tpm.nix
+    ./fonts.nix
   ]
   ++ (builtins.attrValues outputs.nixosModules);
 

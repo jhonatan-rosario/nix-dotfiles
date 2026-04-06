@@ -5,6 +5,7 @@
 }:
 let
   username = "jhonatan";
+  ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
   hasLibvirt = config.virtualisation.libvirtd.enable;
   hasVirtManager = config.programs.virt-manager.enable;
 in
@@ -21,16 +22,23 @@ in
     hashedPasswordFile = config.sops.secrets.jhonatan-password.path;
     home = "/home/${username}";
     description = "Jhonatan";
-    extraGroups = [
-      "${username}"
-      "networkmanager"
-      "input"
-      "wheel"
-      "video"
-      "audio"
-      "tss"
-    ]
-    ++ (pkgs.lib.optional (hasLibvirt && hasVirtManager) "libvirtd");
+    extraGroups =
+      ifTheyExist [
+        "${username}"
+        "networkmanager"
+        "input"
+        "wheel"
+        "video"
+        "audio"
+        "tss"
+        "docker"
+        "podman"
+        "plugdev"
+        "kvm"
+        "libvirt"
+        "git"
+      ]
+      ++ (pkgs.lib.optional (hasLibvirt && hasVirtManager) "libvirtd");
     shell = pkgs.fish;
   };
 }
