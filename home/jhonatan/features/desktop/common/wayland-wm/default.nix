@@ -22,7 +22,6 @@
     wl-clipboard
     kdePackages.qt6ct
     nwg-look
-    networkmanagerapplet
     qimgv # Image viewer
     mpv # Video player
   ];
