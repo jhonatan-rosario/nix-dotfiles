@@ -125,6 +125,7 @@ in
         kb_options = config.home.keyboard.options;
         numlock_by_default = true;
         follow_mouse = 2;
+        float_switch_override_focus = 2;
         touchpad = {
           natural_scroll = true;
           disable_while_typing = true;

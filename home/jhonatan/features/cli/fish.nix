@@ -61,18 +61,18 @@ in
         top = mkIf hasBtop "btop";
         htop = "top";
       };
-      # functions = {
-      #   # Disable greeting
-      #   fish_greeting = "";
-      #   # Grep using ripgrep and pass to nvim
-      #   nvimrg = mkIf (hasNeovim && hasRipgrep) "nvim -q (rg --vimgrep $argv | psub)";
-      #   # Merge history when pressing up
-      #   # up-or-search = lib.readFile ./up-or-search.fish;
-      #   # Check stuff in PATH
-      #   nix-inspect = /* fish */ ''
-      #     set -s PATH | grep "PATH\[.*/nix/store" | cut -d '|' -f2 |  grep -v -e "-man" -e "-terminfo" | perl -pe 's:^/nix/store/\w{32}-([^/]*)/bin$:\1:' | sort | uniq
-      #   '';
-      # };
+      functions = {
+        # Disable greeting
+        fish_greeting = "";
+        # Grep using ripgrep and pass to nvim
+        # nvimrg = mkIf (hasNeovim && hasRipgrep) "nvim -q (rg --vimgrep $argv | psub)";
+        # Merge history when pressing up
+        # up-or-search = lib.readFile ./up-or-search.fish;
+        # Check stuff in PATH
+        # nix-inspect = /* fish */ ''
+        #   set -s PATH | grep "PATH\[.*/nix/store" | cut -d '|' -f2 |  grep -v -e "-man" -e "-terminfo" | perl -pe 's:^/nix/store/\w{32}-([^/]*)/bin$:\1:' | sort | uniq
+        # '';
+      };
       interactiveShellInit = /* fish */ ''
         # Open command buffer in vim when alt+e is pressed
         # bind \ee edit_command_buffer
