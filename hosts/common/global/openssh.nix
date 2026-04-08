@@ -3,12 +3,14 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   hosts = lib.attrNames outputs.nixosConfigurations;
   # Sops needs acess to the keys before the persist dirs are even mounted; so
   # just persisting the keys won't work, we must point at /persist
   # hasOptinPersistence = config.environment.persistence ? "/persist";
-in {
+in
+{
   services.openssh = {
     enable = true;
     settings = {
@@ -32,6 +34,8 @@ in {
     #   }
     # ];
   };
+
+  environment.persistence."/persist".directories = [ "/etc/ssh" ];
 
   # programs.ssh = {
   #   # Each hosts public key

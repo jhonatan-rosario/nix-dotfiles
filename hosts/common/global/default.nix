@@ -7,6 +7,7 @@
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    ./optin-persistence.nix
     ./fish.nix
     ./locale.nix
     ./nix.nix

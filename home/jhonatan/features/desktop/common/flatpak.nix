@@ -9,6 +9,12 @@
     ];
   };
 
+  home.persistence."/persist".directories = [
+    ".local/share/flatpak"
+    ".var/app/com.bitwarden.desktop"
+    ".var/app/io.github.zen_browser.zen"
+  ];
+
   # Set as default browser
   xdg.mimeApps = {
     associations.added = {

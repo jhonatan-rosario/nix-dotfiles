@@ -37,4 +37,9 @@
         { id = "lnjaiaapbakfhlbjenjkhffcdpoompki"; } # Catppuccin for GitHub File Explorer Icons
       ];
   };
+
+  home.persistence."/persist".directories = [
+    ".config/chromium"
+    ".config/BraveSoftware"
+  ];
 }

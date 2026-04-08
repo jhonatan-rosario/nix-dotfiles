@@ -25,14 +25,27 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+    # Impermanence
+    impermanence = {
+      # https://github.com/nix-community/impermanence/pull/272#discussion_r2230796215
+      url = "github:misterio77/impermanence";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -53,8 +66,10 @@
       nixpkgs,
       systems,
       home-manager,
-      noctalia,
+      impermanence,
       sops-nix,
+      disko,
+      noctalia,
       nix-colors,
       nix-flatpak,
       antigravity-nix,

@@ -1,7 +1,8 @@
 {
   pkgs,
   ...
-}: {
+}:
+{
   # Set as default editor
   xdg.mimeApps = {
     associations.added = {
@@ -16,4 +17,10 @@
     enable = true;
     package = pkgs.antigravity;
   };
+
+  home.persistence."/persist".directories = [
+    ".config/Code"
+    # ".config/VSCodium"
+    # ".config/antigravity"
+  ];
 }

@@ -46,6 +46,21 @@
       variant = "intl";
       options = [ "grp:alt_shift_toggle" ];
     };
+
+    persistence = {
+      "/persist".directories = [
+        "Documents"
+        "Downloads"
+        "Pictures"
+        "Videos"
+        "ws"
+        "work"
+        ".local/bin"
+        ".local/share/nix" # trusted settings and repl history
+        ".local/share/remmina"
+
+      ];
+    };
   };
 
   dconf.settings = {

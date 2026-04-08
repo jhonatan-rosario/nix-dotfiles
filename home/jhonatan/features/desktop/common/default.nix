@@ -33,6 +33,15 @@ in
     # dbeaver-bin
   ];
 
+  home.persistence."/persist".directories = [
+    "DataGripProjects"
+    ".anydesk"
+    ".gemini"
+    ".antigravity"
+    ".local/share/remmina"
+    ".cache/remmina"
+  ];
+
   # Also sets org.freedesktop.appearance color-scheme
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
   # if config.colorscheme.mode == "dark"
