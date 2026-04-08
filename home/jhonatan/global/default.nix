@@ -52,12 +52,12 @@
         "Downloads"
         "Pictures"
         "Videos"
+        "nix"
         "ws"
         "work"
+        ".config/sops"
         ".local/bin"
         ".local/share/nix" # trusted settings and repl history
-        ".local/share/remmina"
-
       ];
     };
   };
