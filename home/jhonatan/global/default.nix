@@ -8,7 +8,7 @@
 }:
 {
   imports = [
-    # inputs.impermanence.nixosModules.home-manager.impermanence
+    inputs.impermanence.homeManagerModules.impermanence
     ../features/cli
   ]
   ++ (builtins.attrValues outputs.homeManagerModules);
