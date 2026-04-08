@@ -1,11 +1,17 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   userPath = config.users.users.jhonatan.home;
+  hasOptinPersistence = config.environment.persistence ? "/persist";
 in
 {
   sops = {
     defaultSopsFile = ../../../secrets/secrets.yaml;
-    age.keyFile = "${userPath}/.config/sops/age/keys.txt";
+    age.keyFile = "${lib.optionalString hasOptinPersistence "/persist"}/var/lib/sops-nix/age-key.txt";
     age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   };
 }
