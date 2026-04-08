@@ -25,7 +25,7 @@
   services.xserver = {
     xkb.layout = "us,br";
     xkb.variant = "intl";
-    xkb.options = "grp:alt_shift_toggle";
+    xkb.options = "";
     exportConfiguration = true;
   };
 

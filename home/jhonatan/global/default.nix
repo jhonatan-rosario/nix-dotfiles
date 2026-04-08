@@ -42,9 +42,8 @@
     };
 
     keyboard = {
-      layout = "us,pt";
+      layout = "us,br";
       variant = "intl";
-      options = [ "grp:alt_shift_toggle" ];
     };
   };
 
