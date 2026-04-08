@@ -132,13 +132,6 @@ in
         };
       };
 
-      device = [
-        {
-          name = "royal-kludge-rk84";
-          kb_layout = "us_intl";
-        }
-      ];
-
       dwindle = {
         split_width_multiplier = 1.35;
         pseudotile = true;
