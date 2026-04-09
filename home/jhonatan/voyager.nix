@@ -6,9 +6,11 @@
   lib,
   config,
   pkgs,
-  nix-colors,
   ...
 }:
+let
+  nix-colors = inputs.nix-colors;
+in
 {
   imports = [
     nix-colors.homeManagerModules.default
