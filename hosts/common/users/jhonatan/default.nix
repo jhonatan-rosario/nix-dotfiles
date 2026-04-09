@@ -40,5 +40,8 @@ in
       ]
       ++ (pkgs.lib.optional (hasLibvirt && hasVirtManager) "libvirtd");
     shell = pkgs.fish;
+    packages = [ pkgs.home-manager ];
   };
+
+  home-manager.users.jhonatan = import ../../../../home/jhonatan/${config.networking.hostName}.nix;
 }
