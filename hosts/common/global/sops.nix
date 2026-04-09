@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 let
@@ -9,6 +10,10 @@ let
   hasOptinPersistence = config.environment.persistence ? "/persist";
 in
 {
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+  ];
+
   sops = {
     defaultSopsFile = ../../../secrets/secrets.yaml;
     age.keyFile = "${lib.optionalString hasOptinPersistence "/persist"}/var/lib/sops-nix/age-key.txt";

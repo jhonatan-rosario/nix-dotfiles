@@ -89,16 +89,6 @@
           config.android_sdk.accept_license = true;
         }
       );
-      # systems = [
-      #   "aarch64-linux"
-      #   "i686-linux"
-      #   "x86_64-linux"
-      #   "aarch64-darwin"
-      #   "x86_64-darwin"
-      # ];
-      # This is a function that generates an attribute by calling a function you
-      # pass to it, with each system as an argument
-      # forAllSystems = lib.genAttrs systems;
     in
     {
       inherit lib;
@@ -117,15 +107,11 @@
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       formatter = forEachSystem (pkgs: pkgs.alejandra);
 
-      # packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-      # formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         voyager = lib.nixosSystem {
           modules = [
-            sops-nix.nixosModules.sops
             ./hosts/voyager
           ];
           specialArgs = {
@@ -136,25 +122,19 @@
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager switch --flake .#your-username@your-hostname'
-      homeConfigurations = {
-        "jhonatan@voyager" = lib.homeManagerConfiguration {
-          # pkgs = nixpkgs.legacyPackages.x86_64-linux.extend inputs.hyprpanel.overlay; # Home-manager requires 'pkgs' instance
-          pkgs = pkgsFor.x86_64-linux; # Home-manager requires 'pkgs' instance
-          # pkgs = import nixpkgs {
-          #   inherit system;
-          #   overlays = [
-          #     inputs.hyprpanel.overlay
-          #   ];
-          # };
-          modules = [
-            nix-flatpak.homeManagerModules.nix-flatpak
-            ./home/jhonatan/voyager.nix
-            ./home/jhonatan/nixpkgs.nix
-          ];
-          extraSpecialArgs = {
-            inherit inputs outputs nix-colors;
-          };
-        };
-      };
+
+      # Disabled because home-manager is now a module of NixOS
+      # homeConfigurations = {
+      #   "jhonatan@voyager" = lib.homeManagerConfiguration {
+      #     pkgs = pkgsFor.x86_64-linux; # Home-manager requires 'pkgs' instance
+      #     modules = [
+      #       ./home/jhonatan/voyager.nix
+      #       ./home/jhonatan/nixpkgs.nix
+      #     ];
+      #     extraSpecialArgs = {
+      #       inherit inputs outputs nix-colors;
+      #     };
+      #   };
+      # };
     };
 }
