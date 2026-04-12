@@ -2,11 +2,11 @@
 {
   imports = [
     ./fish.nix
-    ./micro.nix
     ./nh.nix
     ./git.nix
     ./distrobox.nix
     ./rclone.nix
+    ./helix.nix
     # ./nix-alien.nix
     # ./direnv.nix
     # ./gh.nix
