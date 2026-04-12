@@ -61,16 +61,12 @@ in
       bind =
         let
           noctalia = "noctalia-shell ipc call";
-          defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
         in
         [
           # Lock
           "SUPER,l,exec,${noctalia} lockScreen lock"
 
           # Program bindings
-          "SUPER,RETURN,exec,ghostty +new-window"
-          "SUPER,e,exec,${defaultApp "text/plain"}"
-          "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
           "ALT_L,SPACE,exec,${noctalia} launcher toggle"
           "SUPER,v,exec,${noctalia} launcher clipboard"
 
