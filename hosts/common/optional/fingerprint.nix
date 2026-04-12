@@ -4,4 +4,10 @@
     # tod.enable = true;
     # tod.driver = pkgs.libfprint-2-tod1-goodix-550a;
   };
+
+  environment.persistence = {
+    "/persist".directories = [
+      "/var/lib/fprint"
+    ];
+  };
 }

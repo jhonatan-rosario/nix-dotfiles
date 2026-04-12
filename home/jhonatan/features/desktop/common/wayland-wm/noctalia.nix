@@ -9,6 +9,13 @@
     inputs.noctalia.homeModules.default
   ];
 
+  home.persistence = {
+    "/persist".directories = [
+      ".cache/noctalia"
+      ".cache/noctalia-qs"
+    ];
+  };
+  
   programs.noctalia-shell = {
     enable = true;
     settings = {

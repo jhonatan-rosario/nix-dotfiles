@@ -53,7 +53,7 @@
         "Pictures"
         "Videos"
         "nix"
-        "ws"
+        "dev"
         "work"
         ".config/sops"
         ".local/bin"

@@ -15,6 +15,14 @@ let
   hasNeomutt = config.programs.neomutt.enable;
 in
 {
+
+  home.persistence = {
+    "/persist".directories = [
+      ".local/share/fish"
+      ".cache/fish"
+    ];
+  };
+  
   programs.starship = {
     enable = true;
     enableFishIntegration = true;

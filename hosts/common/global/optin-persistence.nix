@@ -18,9 +18,10 @@
         "/etc/machine-id"
       ];
       directories = [
-        "/var/lib/fprint"
-        "/var/lib/systemd"
+        "/var/lib/systemd/coredump"
+        "/var/lib/systemd/timers"
         "/var/lib/nixos"
+        "/var/db/sudo"
         "/var/log"
         "/srv"
       ];
