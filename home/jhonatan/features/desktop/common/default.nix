@@ -17,6 +17,7 @@ in
     ./onlyoffice.nix
     ./brave.nix
     ./obsidian.nix
+    ./zenbrowser.nix
     # ./vscode.nix
   ];
 
@@ -38,6 +39,7 @@ in
     ".anydesk"
     ".gemini"
     ".antigravity"
+    ".config/Antigravity"
     ".local/share/remmina"
     ".cache/remmina"
   ];
