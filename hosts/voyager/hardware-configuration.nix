@@ -20,7 +20,7 @@
         "usbhid"
         "sd_mod"
       ];
-      kernelModules = [ ];
+      kernelModules = [ "amdgpu" ];
     };
     kernelModules = [ "kvm-amd" ];
   };
@@ -97,7 +97,8 @@
 
   # nixpkgs.hostPlatform.system = "x86_64-linux";
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  # hardware.cpu.amd.updateMicrocode = true;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault true;
+  hardware.enableRedistributableFirmware = true;
   # powerManagement.cpuFreqGovernor = "ondemand";
   # hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
