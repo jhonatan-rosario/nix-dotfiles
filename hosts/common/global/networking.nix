@@ -56,7 +56,7 @@
           wifi-security = {
             auth-alg = "open";
             key-mgmt = "wpa-psk";
-            psk = "HOME_WIFI_PASSWORD";
+            psk = "$HOME_WIFI_PASSWORD";
           };
         };
         "UNIVALE - TI" = {
@@ -130,7 +130,7 @@
           };
           wifi-security = {
             key-mgmt = "sae";
-            psk = "MY_PHONE_WIFI_PASSWORD";
+            psk = "$MY_PHONE_WIFI_PASSWORD";
           };
         };
       };
