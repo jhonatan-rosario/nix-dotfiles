@@ -27,7 +27,7 @@
     ../common/optional/quietboot.nix
     ../common/optional/fingerprint.nix
     ../common/optional/bluetooth.nix
-    ../common/optional/virtual-machine.nix
+    # ../common/optional/virtual-machine.nix
     ../common/optional/flatpak.nix
     ../common/optional/openvpn.nix
     ../common/optional/default-packages.nix
