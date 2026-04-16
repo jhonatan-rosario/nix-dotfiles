@@ -25,18 +25,19 @@ in
     hyprpicker
   ];
 
-  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+  xdg.configFile."uwsm/env".source =
+    "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
   wayland.windowManager.hyprland = {
     enable = true;
     systemd = {
       enable = false;
-      variables = ["--all"];
+      variables = [ "--all" ];
     };
 
     package = null;
     portalPackage = null;
-    
+
     settings = {
       general = {
         layout = "dwindle";
@@ -101,7 +102,7 @@ in
         "ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false"
       ];
 
-      monitor = ",preferred,auto,1";
+      monitor = ",highres@highrr,auto,1";
 
       group = {
         "col.border_active" = rgb palette.base07;
@@ -157,12 +158,12 @@ in
           grimblast = lib.getExe pkgs.grimblast;
           defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
         in
-        [ 
-          # Program bindings          
+        [
+          # Program bindings
           "SUPER,RETURN,exec,ghostty +new-window"
           "SUPER,e,exec,${defaultApp "text/plain"}"
           "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
-          
+
           # Switch keyboard layout
           "SUPER,SPACE,exec,hyprctl switchxkblayout all next"
 
