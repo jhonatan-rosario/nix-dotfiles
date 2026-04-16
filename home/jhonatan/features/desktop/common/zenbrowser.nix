@@ -17,6 +17,9 @@ let
     # Check these out at about:config
     "extensions.autoDisableScopes" = 0;
     "extensions.pocket.enabled" = false;
+    "browser.download.useDownloadDir" = false;
+    "intl.accept_languages" = "pt-br,en-us,en";
+    "devtools.toolbox.host" = "right";
     # ...
   };
 
@@ -24,7 +27,9 @@ let
     # To add additional extensions, find it on addons.mozilla.org, find
     # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)
     # Then go to https://addons.mozilla.org/api/v5/addons/addon/!SHORT_ID!/ to get the guid
+    (extension "corretor" "pt-BR@dictionaries.addons.mozilla.org")
     (extension "ublock-origin" "uBlock0@raymondhill.net")
+    (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
     # ...
   ];
 
@@ -42,6 +47,7 @@ in
 
         extraPolicies = {
           DisableTelemetry = true;
+          PasswordManagerEnabled = false;
           ExtensionSettings = builtins.listToAttrs extensions;
 
           SearchEngines = {
@@ -97,6 +103,7 @@ in
   home.persistence = {
     "/persist".directories = [
       ".config/zen"
+      ".cache/zen"
     ];
   };
 
