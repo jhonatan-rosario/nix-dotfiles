@@ -43,5 +43,7 @@ in
     packages = [ pkgs.home-manager ];
   };
 
+  security.sudo.enable = true;
+
   home-manager.users.jhonatan = import ../../../../home/jhonatan/${config.networking.hostName}.nix;
 }

@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  imports = [
+    ./android.nix
+  ];
 
   programs = {
     direnv = {

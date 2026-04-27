@@ -27,6 +27,7 @@ in
     remmina
     antigravity-nix
     jetbrains.datagrip
+    galaxy-buds-client
     # winboat
     # zed-editor-fhs
     # bitwarden-desktop # Problemea no build versão 2026.2.1
