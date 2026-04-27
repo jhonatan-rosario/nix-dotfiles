@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./ssh.nix
     ./fish.nix
     ./nh.nix
     ./git.nix
@@ -16,7 +17,6 @@
     # ./carapace.nix
     # ./nix-index.nix
     # ./pfetch.nix
-    # ./ssh.nix
     # ./xpo.nix
     # ./fzf.nix
     # ./jira.nix
