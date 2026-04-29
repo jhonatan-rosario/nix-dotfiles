@@ -30,7 +30,7 @@ in
     galaxy-buds-client
     # winboat
     # zed-editor-fhs
-    # bitwarden-desktop # Problemea no build versão 2026.2.1
+    # bitwarden-desktop # Problema no build versão 2026.2.1
     # antigravity
     # dbeaver-bin
   ];
@@ -41,6 +41,7 @@ in
     ".gemini"
     ".antigravity"
     ".config/Antigravity"
+    ".config/JetBrains"
     ".local/share/remmina"
     ".cache/remmina"
   ];
