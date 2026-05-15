@@ -2,9 +2,6 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
-  outputs,
-  lib,
-  config,
   pkgs,
   ...
 }:
@@ -17,6 +14,7 @@ in
     ./global
     ./features/programming
     ./features/desktop/hyprland
+    ./features/pass
   ];
   # Red
   wallpaper = pkgs.wallpapers.aenami-dawn;
