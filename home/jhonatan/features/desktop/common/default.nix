@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  config,
   ...
 }:
 let
@@ -18,13 +17,13 @@ in
     ./brave.nix
     ./obsidian.nix
     ./zenbrowser.nix
+    ./remmina.nix
     # ./vscode.nix
   ];
 
   home.packages = with pkgs; [
     libnotify
     anydesk
-    remmina
     antigravity-nix
     jetbrains.datagrip
     galaxy-buds-client
@@ -42,8 +41,6 @@ in
     ".antigravity"
     ".config/Antigravity"
     ".config/JetBrains"
-    ".local/share/remmina"
-    ".cache/remmina"
   ];
 
   # Also sets org.freedesktop.appearance color-scheme
