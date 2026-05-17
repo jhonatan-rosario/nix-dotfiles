@@ -1,17 +1,6 @@
 {
-  lib,
-  config,
-  pkgs,
-  outputs,
-  inputs,
   ...
 }:
-let
-  getHostname = x: lib.last (lib.splitString "@" x);
-  inherit (config.colorscheme) palette;
-  rgb = color: "rgb(${lib.removePrefix "#" color})";
-  rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
-in
 {
   wayland.windowManager.hyprland = {
     settings = {

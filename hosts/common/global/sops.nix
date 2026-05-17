@@ -1,12 +1,11 @@
 {
   config,
-  pkgs,
   lib,
   inputs,
   ...
 }:
 let
-  userPath = config.users.users.jhonatan.home;
+  # userPath = config.users.users.jhonatan.home;
   hasOptinPersistence = config.environment.persistence ? "/persist";
 in
 {
