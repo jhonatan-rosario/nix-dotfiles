@@ -12,15 +12,48 @@
     "/persist".directories = [
       ".cache/noctalia"
       ".cache/noctalia-qs"
+      ".config/noctalia/plugins"
     ];
   };
-  
+
   programs.noctalia-shell = {
     enable = true;
+    plugins = {
+      sources = [
+        {
+          enabled = true;
+          name = "Official Noctalia Plugins";
+          url = "https://github.com/noctalia-dev/noctalia-plugins";
+        }
+      ];
+      states = {
+        polkit-agent = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
+        screen-recorder = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
+        special-workspaces = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
+        workspace-overview = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
+        notes-scratchpad = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
+      };
+      # version = 2;
+    };
     settings = {
       settingsVersion = 0;
       bar = {
-        barType = "simple";
+        barType = "floating";
         position = "top";
         monitors = [ ];
         density = "default";
@@ -76,7 +109,10 @@
             }
             {
               id = "KeyboardLayout";
-              displayMode = "forceopen";
+              displayMode = "forceOpen";
+              iconColor = "none";
+              textColor = "none";
+              showIcon = true;
             }
             {
               id = "SystemMonitor";
@@ -323,6 +359,9 @@
             {
               id = "NightLight";
             }
+            {
+              id = "plugin:screen-recorder";
+            }
           ];
         };
         cards = [
@@ -386,7 +425,7 @@
         dockType = "floating";
         backgroundOpacity = 1;
         floatingRatio = 1;
-        size = 1;
+        size = 0.7;
         onlySameOutput = true;
         monitors = [ ];
         pinnedApps = [ ];
