@@ -87,6 +87,9 @@ in
           "SUPER,F1,exec,${noctalia} powerProfile set powersaver && ${noctalia} powerProfile enableNoctaliaPerformance"
           "SUPER,F2,exec,${noctalia} powerProfile set balanced && ${noctalia} powerProfile disableNoctaliaPerformance"
           "SUPER,F3,exec,${noctalia} powerProfile set performance && ${noctalia} powerProfile disableNoctaliaPerformance"
+
+          # Screen Recorder
+          "SUPER,r,exec,${noctalia} plugin:screen-recorder toggle"
         ];
     };
   };

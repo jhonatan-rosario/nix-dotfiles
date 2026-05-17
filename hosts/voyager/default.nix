@@ -32,6 +32,7 @@
     ../common/optional/openvpn.nix
     ../common/optional/default-packages.nix
     ../common/optional/noctalia.nix
+    ../common/optional/screen-recorder.nix
     # ../common/optional/samba.nix
   ];
 
