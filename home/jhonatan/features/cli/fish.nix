@@ -13,6 +13,7 @@ let
   hasBtop = hasPackage "btop";
   hasNeovim = config.programs.neovim.enable;
   hasNeomutt = config.programs.neomutt.enable;
+  hasZoxide = config.programs.zoxide.enable;
 in
 {
 
@@ -22,7 +23,7 @@ in
       ".cache/fish"
     ];
   };
-  
+
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
@@ -67,7 +68,9 @@ in
         ls = mkIf hasEza "eza";
         cat = mkIf hasBat "bat";
         top = mkIf hasBtop "btop";
+        grep = mkIf hasRipgrep "rg";
         htop = "top";
+        cd = mkIf hasZoxide "z";
       };
       functions = {
         # Disable greeting

@@ -7,7 +7,10 @@
     ./git.nix
     ./distrobox.nix
     ./rclone.nix
+    ./micro.nix
     ./helix.nix
+    ./zoxide.nix
+    ./fzf.nix
     # ./nix-alien.nix
     # ./direnv.nix
     # ./gh.nix
@@ -18,7 +21,6 @@
     # ./nix-index.nix
     # ./pfetch.nix
     # ./xpo.nix
-    # ./fzf.nix
     # ./jira.nix
   ];
   home.packages = with pkgs; [
