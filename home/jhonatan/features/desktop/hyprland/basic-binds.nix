@@ -9,7 +9,6 @@
     bind =
       let
         workspaces = [
-          "0"
           "1"
           "2"
           "3"
@@ -33,7 +32,7 @@
         };
       in
       [
-        "SUPERSHIFT,q,killactive"
+        "SUPER,q,killactive"
         "SUPER,mouse:274,killactive"
         "SUPERSHIFT,e,exit"
 
