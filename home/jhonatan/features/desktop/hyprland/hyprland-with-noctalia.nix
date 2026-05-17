@@ -52,6 +52,9 @@
           noctalia = "noctalia-shell ipc call";
         in
         [
+          # Session Menu
+          "ALT,F4,exec,${noctalia} sessionMenu toggle"
+
           # Lock
           "SUPER,l,exec,${noctalia} lockScreen lock"
 
