@@ -4,17 +4,11 @@
 {
   programs.rclone = {
     enable = true;
-    remotes = {
-      gdrive = {
-        config = {
-          type = "drive";
-          scope = "drive";
-        };
+  };
 
-        secrets = {
-
-        };
-      };
-    };
+  home.persistence."/persist" = {
+    directories = [
+      ".config/rclone"
+    ];
   };
 }
