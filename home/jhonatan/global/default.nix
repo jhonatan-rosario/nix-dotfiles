@@ -58,6 +58,8 @@
         ".config/sops"
         ".local/bin"
         ".local/share/nix" # trusted settings and repl history
+        ".cache/mesa_shader_cache" # Mesa shader cache
+        ".cache/radv_builtin_shaders" # Radv shader cache
       ];
     };
   };
