@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  nix-colors,
   ...
 }:
 let
@@ -28,6 +27,7 @@ in
       name = "catppuccin-macchiato-dark-cursors"; # macOS
       size = 24;
     };
+    gtk4.theme = config.gtk.theme;
   };
 
   # home.file = {
