@@ -49,6 +49,12 @@
         };
       };
       # version = 2;
+
+      pluginSettings = {
+        notes-scratchpad = {
+          filePath = "$HOME/Documents/notes.txt";
+        };
+      };
     };
     settings = {
       settingsVersion = 0;
@@ -85,6 +91,23 @@
             {
               id = "Workspace";
               labelMode = "name";
+              showLabelsOnlyWhenOccupied = false;
+              characterCount = 2;
+              colorizeIcons = false;
+              emptyColor = "none";
+              enableScrollWheel = true;
+              focusedColor = "primary";
+              followFocusedScreen = false;
+              fontWeight = "bold";
+              groupedBorderOpacity = 1;
+              hideUnoccupied = false;
+              iconScale = 0.8;
+              occupiedColor = "secondary";
+              pillSize = 0.6;
+              showApplications = false;
+              showApplicationsHover = false;
+              showBadge = true;
+              unfocusedIconsOpacity = 1;
             }
             {
               id = "ActiveWindow";
@@ -116,6 +139,25 @@
             }
             {
               id = "SystemMonitor";
+              compactMode = false;
+              diskPath = "/";
+              iconColor = "none";
+              showCpuCores = false;
+              showCpuFreq = false;
+              showCpuTemp = true;
+              showCpuUsage = true;
+              showDiskAvailable = false;
+              showDiskUsage = false;
+              showDiskUsageAsPercent = false;
+              showGpuTemp = false;
+              showLoadAverage = false;
+              showMemoryAsPercent = false;
+              showMemoryUsage = true;
+              showNetworkStats = false;
+              showSwapUsage = true;
+              textColor = "primary";
+              useMonospaceFont = true;
+              usePadding = false;
             }
             {
               id = "Volume";
@@ -209,8 +251,8 @@
         smoothScrollEnabled = true;
       };
       ui = {
-        fontDefault = "";
-        fontFixed = "";
+        fontDefault = "Inter Nerd Font";
+        fontFixed = "JetBrains Mono";
         fontDefaultScale = 1;
         fontFixedScale = 1;
         tooltipsEnabled = true;
@@ -466,7 +508,7 @@
         showHeader = true;
         showKeybinds = true;
         largeButtonsStyle = true;
-        largeButtonsLayout = "single-row";
+        largeButtonsLayout = "grid";
         powerOptions = [
           {
             action = "lock";
@@ -500,7 +542,7 @@
           }
           {
             action = "rebootToUefi";
-            enabled = true;
+            enabled = false;
             keybind = "7";
           }
         ];
