@@ -11,10 +11,10 @@
     ./helix.nix
     ./zoxide.nix
     ./fzf.nix
+    ./gpg.nix
     # ./nix-alien.nix
     # ./direnv.nix
     # ./gh.nix
-    # ./gpg.nix
     # ./jujutsu.nix
     # ./lyrics.nix
     # ./carapace.nix
