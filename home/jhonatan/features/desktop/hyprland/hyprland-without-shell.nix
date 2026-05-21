@@ -2,12 +2,10 @@
   lib,
   config,
   pkgs,
-  outputs,
-  inputs,
   ...
 }:
 let
-  getHostname = x: lib.last (lib.splitString "@" x);
+  # getHostname = x: lib.last (lib.splitString "@" x);
   # remoteColorschemes =
   #   lib.mapAttrs' (n: v: {
   #     name = getHostname n;
@@ -103,20 +101,6 @@ in
           kb_layout = "us_intl";
         }
       ];
-
-      dwindle = {
-        split_width_multiplier = 1.35;
-        pseudotile = true;
-      };
-
-      misc = {
-        vfr = true;
-        close_special_on_empty = true;
-        focus_on_activate = true;
-        key_press_enables_dpms = true;
-        # Unfullscreen when opening something
-        on_focus_under_fullscreen = 2;
-      };
 
       # windowrule =
       #   let

@@ -2,12 +2,10 @@
   lib,
   config,
   pkgs,
-  outputs,
-  inputs,
   ...
 }:
 let
-  getHostname = x: lib.last (lib.splitString "@" x);
+  # getHostname = x: lib.last (lib.splitString "@" x);
   # remoteColorschemes =
   #   lib.mapAttrs' (n: v: {
   #     name = getHostname n;
@@ -107,7 +105,6 @@ in
 
       dwindle = {
         split_width_multiplier = 1.35;
-        pseudotile = true;
       };
 
       misc = {
@@ -218,7 +215,7 @@ in
 
       bind =
         let
-          wlogout = lib.getExe pkgs.wlogout;
+          # wlogout = lib.getExe pkgs.wlogout;
           grimblast = lib.getExe pkgs.grimblast;
           osd = lib.getExe' pkgs.swayosd "swayosd-client";
           defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";

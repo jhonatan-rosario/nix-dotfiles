@@ -41,13 +41,14 @@ let
     fi
   '';
   gamemode = pkgs.writeShellScriptBin "gamemode" ''
+    set -e
     HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
     if [ "$HYPRGAMEMODE" = 1 ] ; then
         hyprctl --batch "\
             keyword animations:enabled 0;\
             keyword animation borderangle,0; \
             keyword decoration:shadow:enabled 0;\
-            keyword decoration:blur:enabled 0;\
+            keyword decoration:blur:enabled 0"
         hyprctl notify 1 5000 "rgb(40a02b)" "Gamemode [ON]"
         exit
     else
@@ -88,6 +89,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
     systemd = {
       enable = false;
       variables = [ "--all" ];
@@ -109,18 +111,6 @@ in
       };
 
       monitor = ",highres@highrr,auto,1";
-
-      workspace = [
-        "1, persistent:true"
-        "2, persistent:true"
-        "3, persistent:true"
-        "4, persistent:true"
-        "5, persistent:true"
-        "6, persistent:true"
-        "7, persistent:true"
-        "8, persistent:true"
-        "9, persistent:true"
-      ];
 
       windowrule = [
         "match:title ^(Picture-in-Picture)$, float on"
@@ -197,14 +187,18 @@ in
         movefocus_cycles_fullscreen = false;
       };
 
-      cursor.inactive_timeout = 4;
+      cursor = {
+        no_warps = true;
+        inactive_timeout = 4;
+      };
+
       input = {
         kb_layout = config.home.keyboard.layout;
         kb_variant = config.home.keyboard.variant;
         kb_options = config.home.keyboard.options;
         numlock_by_default = true;
         follow_mouse = 2;
-        float_switch_override_focus = 2;
+        float_switch_override_focus = 0;
         touchpad = {
           natural_scroll = true;
           disable_while_typing = true;
@@ -213,11 +207,9 @@ in
 
       dwindle = {
         split_width_multiplier = 1.35;
-        pseudotile = true;
       };
 
       misc = {
-        vfr = true;
         close_special_on_empty = true;
         focus_on_activate = true;
         key_press_enables_dpms = true;

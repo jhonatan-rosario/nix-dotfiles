@@ -13,11 +13,6 @@
         "noctalia-shell"
       ];
 
-      dwindle = {
-        split_width_multiplier = 1.35;
-        pseudotile = true;
-      };
-
       layerrule = [
         {
           name = "noctalia";
@@ -82,6 +77,9 @@
 
           # Screen Recorder
           "SUPER,r,exec,${noctalia} plugin:screen-recorder toggle"
+
+          # Notes
+          "SUPER,n,exec,${noctalia} plugin:notes-scratchpad togglePanel"
         ];
     };
   };

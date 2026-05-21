@@ -36,16 +36,16 @@
         "SUPER,mouse:274,killactive"
         "SUPERSHIFT,e,exit"
 
-        "SUPER,s,togglesplit"
+        #"SUPER,s,togglesplit"
         "SUPER,f,fullscreen,1"
         "SUPERSHIFT,f,fullscreen,0"
         "SUPERSHIFT,space,togglefloating"
 
-        "SUPER,minus,splitratio,-0.25"
-        "SUPERSHIFT,minus,splitratio,-0.3333333"
+        # "SUPER,minus,splitratio,-0.25"
+        #"SUPERSHIFT,minus,splitratio,-0.3333333"
 
-        "SUPER,equal,splitratio,0.25"
-        "SUPERSHIFT,equal,splitratio,0.3333333"
+        # "SUPER,equal,splitratio,0.25"
+        # "SUPERSHIFT,equal,splitratio,0.3333333"
 
         "SUPER,g,togglegroup"
         "SUPER,t,lockactivegroup,toggle"
@@ -63,10 +63,10 @@
       ]
       ++
         # Change workspace
-        (map (n: "SUPER,${n},workspace,name:${n}") workspaces)
+        (map (n: "SUPER,${n},workspace,${n}") workspaces)
       ++
         # Move window to workspace
-        (map (n: "SUPERSHIFT,${n},movetoworkspacesilent,name:${n}") workspaces)
+        (map (n: "SUPERSHIFT,${n},movetoworkspacesilent,${n}") workspaces)
       ++
         # Move focus
         (lib.mapAttrsToList (key: direction: "SUPER,${key},movefocus,${direction}") directions)
