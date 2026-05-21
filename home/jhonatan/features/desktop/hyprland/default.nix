@@ -129,8 +129,8 @@ in
         "match:title ^(Picture in picture)$, float on"
         "match:title ^(Picture in picture)$, pin on"
         "match:title ^(Picture in picture)$, size 730 430"
-        "match:class ^(xdg-desktop-portal-gtk)$, float on"
-        "match:class ^(xdg-desktop-portal-gtk)$, size 1100 700"
+        "match:title ^(filechooser)$, float on"
+        "match:title ^(filechooser)$, size 1555 865"
         "match:title ^(satty)$, float on"
         "match:title ^(satty)$, pin on"
       ];
@@ -232,7 +232,7 @@ in
         [
           # Program bindings
           "SUPER,RETURN,exec,ghostty +new-window"
-          "SUPER,e,exec,$EDITOR"
+          "SUPER,e,exec,${defaultApp "inode/directory"}"
           "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
 
           # Switch keyboard layout
