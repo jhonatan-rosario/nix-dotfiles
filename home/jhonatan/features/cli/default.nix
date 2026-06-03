@@ -57,5 +57,7 @@
 
     wf-recorder # screen record
     cmatrix # Matrix rain
+    dig # DNS Tools
+    traceroute # Tracks the routue by packets over an IP network
   ];
 }
