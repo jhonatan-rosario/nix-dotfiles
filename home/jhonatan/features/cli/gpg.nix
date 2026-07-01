@@ -11,6 +11,10 @@
     # sshKeys = [ ];
     enableExtraSocket = true;
     pinentry.package = pkgs.pinentry-gnome3;
+    defaultCacheTtl = 28800;
+    extraConfig = ''
+      allow-loopback-pinentry
+    '';
   };
 
   programs =

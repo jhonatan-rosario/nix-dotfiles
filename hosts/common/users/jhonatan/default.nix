@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }:
 let
@@ -45,5 +46,10 @@ in
 
   security.sudo.enable = true;
 
-  home-manager.users.jhonatan = import ../../../../home/jhonatan/${config.networking.hostName}.nix;
+  home-manager = {
+    sharedModules = [
+      inputs.sops-nix.homeManagerModules.sops
+    ];
+    users.jhonatan = import ../../../../home/jhonatan/${config.networking.hostName}.nix;
+  };
 }

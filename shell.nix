@@ -50,7 +50,7 @@
       };
       androidSdk = androidComposition.androidsdk;
     in
-    pkgs.mkShell rec {
+    pkgs.mkShell {
       ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
 
       buildInputs = with pkgs; [

@@ -15,6 +15,7 @@ in
     ./features/programming
     ./features/desktop/hyprland
     ./features/pass
+    # ./features/backup
   ];
   # Red
   wallpaper = pkgs.wallpapers.aenami-dawn;

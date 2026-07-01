@@ -4,7 +4,7 @@
   ...
 }:
 let
-  antigravity-nix = inputs.antigravity-nix.packages.x86_64-linux.default;
+  antigravity = inputs.antigravity-nix.packages.x86_64-linux;
 in
 {
   imports = [
@@ -24,7 +24,9 @@ in
   home.packages = with pkgs; [
     libnotify
     anydesk
-    antigravity-nix
+    antigravity.default
+    antigravity.google-antigravity-ide
+    antigravity.google-antigravity-cli
     jetbrains.datagrip
     galaxy-buds-client
     # winboat
@@ -39,8 +41,11 @@ in
     ".anydesk"
     ".gemini"
     ".antigravity"
+    ".antigravity-ide"
     ".config/Antigravity"
+    ".config/Antigravity IDE"
     ".config/JetBrains"
+    ".java/.userPrefs/jetbrains"
   ];
 
   # Also sets org.freedesktop.appearance color-scheme

@@ -9,6 +9,7 @@
 {
   imports = [
     inputs.impermanence.homeManagerModules.impermanence
+    # inputs.sops-nix.homeManagerModules.sops
     ../features/cli
   ]
   ++ (builtins.attrValues outputs.homeManagerModules);
@@ -29,6 +30,11 @@
   systemd.user.startServices = "sd-switch";
 
   programs.home-manager.enable = true;
+
+  sops = {
+    defaultSopsFile = ../secrets.yaml;
+    age.keyFile = "${config.home.homeDirectory}/.config/sops/keys.txt";
+  };
 
   home = {
     username = lib.mkDefault "jhonatan";

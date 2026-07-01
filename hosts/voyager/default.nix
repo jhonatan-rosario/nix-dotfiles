@@ -10,6 +10,7 @@
     inputs.hardware.nixosModules.common-pc-laptop-ssd
 
     ./hardware-configuration.nix
+    ./certificates.nix
 
     ../common/global
     ../common/users/jhonatan

@@ -2,19 +2,22 @@
 {
   programs.ssh = {
     enable = true;
-    addKeysToAgent = "yes";
-    matchBlocks = {
+    enableDefaultConfig = false;
+    settings = {
       "github.com-work" = {
-        hostname = "github.com";
-        user = "git";
-        identityFile = "~/.ssh/id_ed25519";
+        HostName = "github.com";
+        User = "git";
+        IdentityFile = "~/.ssh/id_ed25519";
       };
     };
   };
 
   home.persistence."/persist" = {
     directories = [
-      ".ssh"
+      {
+        directory = ".ssh";
+        mode = "0700";
+      }
     ];
   };
 
