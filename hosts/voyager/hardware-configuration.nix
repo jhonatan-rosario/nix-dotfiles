@@ -1,7 +1,5 @@
 {
-  config,
   lib,
-  pkgs,
   inputs,
   ...
 }:
@@ -83,7 +81,7 @@
                   ];
                   mountpoint = "/swap";
                   swap.swapfile = {
-                    size = "8196M";
+                    size = "32768M";
                     path = "swapfile";
                   };
                 };
