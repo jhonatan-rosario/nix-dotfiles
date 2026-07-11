@@ -96,7 +96,7 @@
   # nixpkgs.hostPlatform.system = "x86_64-linux";
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault true;
-  hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
   # powerManagement.cpuFreqGovernor = "ondemand";
   # hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
