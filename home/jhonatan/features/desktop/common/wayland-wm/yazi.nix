@@ -82,11 +82,11 @@ in
       plugin = {
         prepend_preloaders = [
           {
-            name = "/run/user/${userId}/gvfs/**/*";
+            url = "/run/user/${userId}/gvfs/**/*";
             run = "noop";
           }
           {
-            name = "/run/media/${username}/**/*";
+            url = "/run/media/${username}/**/*";
             run = "noop";
           }
         ];
@@ -94,7 +94,7 @@ in
         prepend_previewers = [
           # Allow to preview folder.
           {
-            name = "*/";
+            url = "*/";
             run = "folder";
           }
 
@@ -104,13 +104,13 @@ in
 
           # Using absolute path.
           {
-            name = "/run/user/${userId}/gvfs/**/*";
+            url = "/run/user/${userId}/gvfs/**/*";
             run = "noop";
           }
 
           # For mounted hard disk/drive.
           {
-            name = "/run/media/${username}/**/*";
+            url = "/run/media/${username}/**/*";
             run = "noop";
           }
         ];
