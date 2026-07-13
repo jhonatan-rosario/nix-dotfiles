@@ -110,7 +110,7 @@ in
         resize_on_border = true;
       };
 
-      monitor = ",highres@highrr,auto,1";
+      monitor = ",preferred,auto,1";
 
       windowrule = [
         "match:title ^(Picture-in-Picture)$, float on"

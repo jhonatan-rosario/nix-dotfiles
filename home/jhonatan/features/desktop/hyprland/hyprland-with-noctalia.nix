@@ -10,7 +10,7 @@
       };
 
       exec-once = [
-        "noctalia-shell"
+        "noctalia"
       ];
 
       layerrule = [
@@ -44,42 +44,42 @@
 
       bind =
         let
-          noctalia = "noctalia-shell ipc call";
+          noctalia = "noctalia msg";
         in
         [
           # Session Menu
-          "ALT,F4,exec,${noctalia} sessionMenu toggle"
+          "ALT,F4,exec,${noctalia} panel-toggle session"
 
           # Lock
-          "SUPER,l,exec,${noctalia} lockScreen lock"
+          "SUPER,l,exec,${noctalia} session lock"
 
           # Program bindings
-          "ALT_L,SPACE,exec,${noctalia} launcher toggle"
-          "SUPER,v,exec,${noctalia} launcher clipboard"
+          "ALT_L,SPACE,exec,${noctalia} panel-toggle launcher"
+          "SUPER,v,exec,${noctalia} panel-toggle clipboard"
+
+          # Window Switcher
+          "ALT_L,TAB,exec,${noctalia} window-switcher"
 
           # Brightness control (only works if the system has lightd)
-          ",XF86MonBrightnessUp,exec,${noctalia} brightness increase"
-          ",XF86MonBrightnessDown,exec,${noctalia} brightness decrease"
+          ",XF86MonBrightnessUp,exec,${noctalia} brightness-up all 10"
+          ",XF86MonBrightnessDown,exec,${noctalia} brightness-down all 10"
 
           # Volume
-          ",XF86AudioRaiseVolume,exec,${noctalia} volume increase"
-          ",XF86AudioLowerVolume,exec,${noctalia} volume decrease"
-          ",XF86AudioMute,exec,${noctalia} volume muteOutput"
-          "SHIFT,XF86AudioRaiseVolume,exec,${noctalia} volume increase"
-          "SHIFT,XF86AudioLowerVolume,exec,${noctalia} volume decrease"
-          "SHIFT,XF86AudioMute,exec,${noctalia} volume muteOutput"
-          ",XF86AudioMicMute,exec,${noctalia} volume muteInput"
+          ",XF86AudioRaiseVolume,exec,${noctalia} volume-up 10"
+          ",XF86AudioLowerVolume,exec,${noctalia} volume-down 10"
+          ",XF86AudioMute,exec,${noctalia} volume-mute"
+          "SHIFT,XF86AudioRaiseVolume,exec,${noctalia} volume-up 20"
+          "SHIFT,XF86AudioLowerVolume,exec,${noctalia} volume-down 20"
+          ",XF86AudioMicMute,exec,${noctalia} mic-mute"
 
           # Atalhos de teclado para perfis de energia
-          "SUPER,F1,exec,${noctalia} powerProfile set powersaver && ${noctalia} powerProfile enableNoctaliaPerformance"
-          "SUPER,F2,exec,${noctalia} powerProfile set balanced && ${noctalia} powerProfile disableNoctaliaPerformance"
-          "SUPER,F3,exec,${noctalia} powerProfile set performance && ${noctalia} powerProfile disableNoctaliaPerformance"
+          "SUPER,F1,exec,${noctalia} power-cycle"
 
           # Screen Recorder
-          "SUPER,r,exec,${noctalia} plugin:screen-recorder toggle"
+          "SUPER,r,exec,${noctalia} plugin noctalia/screen_recorder:service all toggle"
 
           # Notes
-          "SUPER,n,exec,${noctalia} plugin:notes-scratchpad togglePanel"
+          "SUPER,n,exec,${noctalia} panel-toggle noctalia/notes:panel"
         ];
     };
   };

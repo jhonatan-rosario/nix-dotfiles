@@ -26,9 +26,8 @@ in
 
   services.samba = {
     enable = true;
-    package = pkgs.sambaFull;
+    package = pkgs.samba4;
     openFirewall = true;
-    securityType = "user";
     settings = {
       global = {
         "workgroup" = "WORKGROUP";
