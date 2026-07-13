@@ -124,7 +124,7 @@ in
         };
 
         launcher = {
-          custom_imange = nixosIcon;
+          custom_image = nixosIcon;
           custom_image_colorize = true;
         };
 
