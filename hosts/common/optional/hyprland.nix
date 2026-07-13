@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   ...
 }:
@@ -23,6 +24,10 @@
 # in
 {
 
+  imports = [
+    inputs.noctalia-greeter.nixosModules.default
+  ];
+
   programs.hyprland = {
     enable = true;
     withUWSM = true; # recommended for most users
@@ -32,11 +37,11 @@
   environment.systemPackages = with pkgs; [
     kitty # required for the default Hyprland config
     hyprshutdown
-    adwaita-icon-theme
+    pkgs.magnetic-catppuccin-gtk
     gnome-themes-extra # Optional: for extra GTK theme support
   ];
 
-  security.pam.services.hyprlock = { };
+  # security.pam.services.hyprlock = { };
 
   programs.thunar = {
     enable = true;
@@ -48,6 +53,23 @@
 
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
+
+  programs.noctalia-greeter = {
+    enable = true;
+
+    # Optional configuration
+    greeter-args = "";
+    settings = {
+      cursor = {
+        theme = "Catppuccin-GTK-Dark";
+        size = 24;
+        path = "${pkgs.catppuccin-cursors.macchiatoDark}/share/icons";
+      };
+      keyboard = {
+        layout = "us";
+      };
+    };
+  };
 
   #  programs.regreet = {
   #    enable = true;
@@ -75,18 +97,18 @@
   #    wayland.enable = true;
   #  };
 
-  services.displayManager = {
-    defaultSession = "hyprland-uwsm";
-    ly = {
-      enable = true;
-      # Configurações adicionais do Ly (opcional)
-      settings = {
-        animation = "matrix"; # Efeito visual no login
-        save = true; # Salva o último usuário e sessão usados
-        bigclock = true; # Hora grande no login
-      };
-    };
-  };
+  # services.displayManager = {
+  #   defaultSession = "hyprland-uwsm";
+  #   ly = {
+  #     enable = true;
+  #     # Configurações adicionais do Ly (opcional)
+  #     settings = {
+  #       animation = "matrix"; # Efeito visual no login
+  #       save = true; # Salva o último usuário e sessão usados
+  #       bigclock = true; # Hora grande no login
+  #     };
+  #   };
+  # };
 
   xdg.portal = {
     enable = true;

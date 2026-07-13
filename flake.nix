@@ -49,6 +49,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-colors.url = "github:misterio77/nix-colors";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";

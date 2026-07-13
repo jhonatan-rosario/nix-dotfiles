@@ -47,7 +47,12 @@ in
       };
 
       shell = {
+        polkit_agent = true;
         screen_corners.enabled = true;
+
+        greeter_sync = {
+          auto_sync = true;
+        };
       };
 
       theme = {
