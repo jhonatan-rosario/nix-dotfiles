@@ -84,14 +84,14 @@ in
     GRIMBLAST_EDITOR = "satty";
   };
 
-  xdg.configFile."uwsm/env".source =
-    "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+  # xdg.configFile."uwsm/env".source =
+  #   "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "hyprlang";
     systemd = {
-      enable = false;
+      enable = true;
       variables = [ "--all" ];
     };
 
