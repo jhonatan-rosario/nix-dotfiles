@@ -93,6 +93,7 @@ in
         start = [
           "launcher"
           "workspaces"
+          "active_window"
           "media"
         ];
 
