@@ -1,7 +1,18 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
+let
+  claude-code = inputs.nix-claude-code.packages.x86_64-linux.default;
+in
 {
   imports = [
     ./android.nix
+  ];
+
+  home.persistence."/persist".directories = [
+    ".claude"
   ];
 
   programs = {
@@ -15,6 +26,7 @@
   home.packages = with pkgs; [
     bun
     nodejs_24
+    claude-code
   ];
 
 }
