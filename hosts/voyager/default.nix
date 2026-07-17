@@ -39,6 +39,7 @@
 
   networking = {
     hostName = "voyager";
+    # domain = "univale.local";
   };
 
   boot = {

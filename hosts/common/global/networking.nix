@@ -68,6 +68,7 @@
           };
           ipv4 = {
             method = "auto";
+            dns-search = "univale.local";
           };
           ipv6 = {
             addr-gen-mode = "default";
@@ -93,6 +94,7 @@
           };
           ipv4 = {
             method = "auto";
+            dns-search = "univale.local";
           };
           ipv6 = {
             addr-gen-mode = "default";
