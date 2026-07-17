@@ -13,6 +13,7 @@
     # ./waybar.nix
     ./yazi.nix
     ./ghostty.nix
+    ./qutebrowser.nix
     # ./ashell.nix
   ];
 
