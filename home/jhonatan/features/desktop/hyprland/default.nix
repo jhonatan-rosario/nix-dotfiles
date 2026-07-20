@@ -9,15 +9,20 @@ let
   inherit (config.colorscheme) palette;
   rgb = color: "rgb(${lib.removePrefix "#" color})";
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
+  notifySendExe = lib.getExe' pkgs.libnotify "notify-send";
+  tesseractExe = lib.getExe pkgs.tesseract;
+  wlCopyExe = lib.getExe' pkgs.wl-clipboard "wl-copy";
+  grimblastExe = lib.getExe pkgs.grimblast;
+  sattyExe = lib.getExe pkgs.satty;
   ocr-extract-text = pkgs.writeShellScriptBin "ocr-extract-text" ''
-    if ${pkgs.grimblast}/bin/grimblast --freeze save area - | ${pkgs.tesseract}/bin/tesseract stdin stdout -l por+eng 2>/dev/null | ${pkgs.wl-clipboard}/bin/wl-copy; then
-      if [ -n "$(${pkgs.wl-clipboard}/bin/wl-paste)" ]; then
-        ${pkgs.libnotify}/bin/notify-send "OCR Concluído" "O texto extraído foi copiado para a área de transferência." -i edit-paste -t 3000
+    if ${grimblastExe} --freeze save area - | ${tesseractExe} stdin stdout -l por+eng 2>/dev/null | ${wlCopyExe}; then
+      if [ -n "$(${wlCopyExe})" ]; then
+        ${notifySendExe} "OCR Concluído" "O texto extraído foi copiado para a área de transferência." -i edit-paste -t 3000
       else
-        ${pkgs.libnotify}/bin/notify-send "OCR Falhou" "Nenhum texto pôde ser identificado na área selecionada." -i dialog-error -t 3000
+        ${notifySendExe} "OCR Falhou" "Nenhum texto pôde ser identificado na área selecionada." -i dialog-error -t 3000
       fi
     else
-      ${pkgs.libnotify}/bin/notify-send "OCR Cancelado" "A seleção de tela foi abortada" -i dialog-warning -t 2000
+      ${notifySendExe} "OCR Cancelado" "A seleção de tela foi abortada" -i dialog-warning -t 2000
     fi
   '';
   screenshot-satty = pkgs.writeShellScriptBin "screenshot-satty" ''
@@ -28,16 +33,18 @@ let
     MODE="''${1:-area}"
 
     # Cria um diretório temporário seguro
-    TEMP_DIR=$(${pkgs.coreutils}/bin/mktemp -d)
+    TEMP_DIR=$(mktemp -d)
     FILE="$TEMP_DIR/screenshot.png"
 
     # Garante a remoção do diretório temporário ao encerrar o script
-    trap '${pkgs.coreutils}/bin/rm -rf "'"$TEMP_DIR"'"' EXIT
+    trap 'rm -rf "'"$TEMP_DIR"'"' EXIT
 
     # Tira o print usando o modo dinâmico (area, output, screen, etc.)
-    if ${pkgs.grimblast}/bin/grimblast save "$MODE" "$FILE"; then
+    if ${grimblastExe} --freeze copysave "$MODE" "$FILE"; then
         # Passa a imagem salva para o Satty
-        ${pkgs.satty}/bin/satty --filename "$FILE"
+        # ${wlCopyExe} < "$FILE"
+        ${sattyExe} --filename "$FILE"
+
     fi
   '';
   gamemode = pkgs.writeShellScriptBin "gamemode" ''
@@ -58,9 +65,9 @@ let
     fi
     exit 1
   '';
-  ocr-extract-text-exe = lib.getExe ocr-extract-text;
-  screenshot-satty-exe = lib.getExe screenshot-satty;
-  gamemode-exe = lib.getExe gamemode;
+  ocrExe = lib.getExe ocr-extract-text;
+  screenshotExe = lib.getExe screenshot-satty;
+  gamemodeExe = lib.getExe gamemode;
 in
 {
   imports = [
@@ -243,14 +250,14 @@ in
           "SUPERSHIFT,c,exec,hyprpicker -a"
 
           # Screenshotting
-          ",Print,exec,${screenshot-satty-exe} area"
-          "SUPERSHIFT,Print,exec,${screenshot-satty-exe} output"
+          ",Print,exec,${screenshotExe} area"
+          "SUPERSHIFT,Print,exec,${screenshotExe} output"
 
           # Text OCR
-          "SUPERSHIFT,t,exec,${ocr-extract-text-exe}"
+          "SUPERSHIFT,t,exec,${ocrExe}"
 
           # Gamemode
-          "SUPER,F4,exec,${gamemode-exe}"
+          "SUPER,F4,exec,${gamemodeExe}"
         ];
 
       extraConfig = ''
