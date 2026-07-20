@@ -23,8 +23,8 @@
   time.timeZone = "America/Sao_Paulo";
 
   services.xserver = {
-    xkb.layout = "us,br";
-    xkb.variant = "intl";
+    xkb.layout = "us,us,br";
+    xkb.variant = "altgr-intl,intl,";
     xkb.options = "";
     exportConfiguration = true;
   };

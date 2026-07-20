@@ -45,12 +45,19 @@
       FLAKE = "$HOME/nix";
       NIXPKGS_ALLOW_UNFREE = "1";
       NIXOS_OZONE_WL = "1";
+      XCOMPOSEFILE = "${config.home.homeDirectory}/.XCompose";
     };
 
     keyboard = {
-      layout = "us,br";
-      variant = "intl";
+      layout = "us,us,br";
+      variant = "altgr-intl,intl,";
     };
+
+    file.".XCompose".text = ''
+      include "%L"
+      <dead_acute> <c> : "ç" U00e7
+      <dead_acute> <C> : "Ç" U00c7
+    '';
 
     packages = with pkgs; [
       gcr
