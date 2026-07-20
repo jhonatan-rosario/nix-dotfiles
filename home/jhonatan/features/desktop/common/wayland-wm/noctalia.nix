@@ -40,6 +40,7 @@ in
           "noctalia/screen_recorder"
           "noctalia/translator"
           "noctalia/notes"
+          "noctalia/wallhaven"
           "cleboost/zed-provider"
         ];
 
@@ -109,6 +110,7 @@ in
 
         end = [
           "tray"
+          "keyboard_layout"
           "temp"
           "cpu"
           "ram"
@@ -155,6 +157,15 @@ in
 
         bluetooth = {
           hide_when_no_connected_device = true;
+        };
+
+        keyboard_layout = {
+          hide_when_single_layout = true;
+          custom_labels = {
+            "English (US, intl., with dead keys)" = "US (Intl)";
+            "English (intl., with AltGr dead keys)" = "US (AltGr)";
+            "Portuguese (Brazil)" = "PT (BR)";
+          };
         };
       };
 
