@@ -4,7 +4,8 @@
   ...
 }:
 let
-  claude-code = inputs.nix-claude-code.packages.x86_64-linux.default;
+  claude-code = inputs.nix-claude-code.packages.${pkgs.system}.default;
+  codex = inputs.codex-cli-nix.packages.${pkgs.system}.default;
 in
 {
   imports = [
@@ -27,6 +28,7 @@ in
     bun
     nodejs_24
     claude-code
+    codex
   ];
 
 }

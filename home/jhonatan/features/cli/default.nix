@@ -30,7 +30,7 @@
     wget # Download files from the internet
 
     bc # Calculator
-    bottom # System viewer
+    bottom # System viewer / Better htop
     ncdu # TUI disk usage
     eza # Better ls
     ripgrep # Better grep
@@ -42,9 +42,7 @@
     jq # JSON pretty printer and manipulator
     # trekscii # Cute startrek cli printerc
     timer # To help with my ADHD paralysis
-
     nixd # Nix LSP
-    alejandra # Nix formatter
     nixfmt # Nix formatter
     nvd # Differ
     nix-diff # Differ, more detailed

@@ -3,11 +3,22 @@
 
   nixConfig = {
     builders-use-substitutes = true;
-    extra-substituters = [ "https://noctalia.cachix.org" ];
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://noctalia.cachix.org"
+      "https://claude-code.cachix.org"
+      "https://codex-cli.cachix.org"
+      # "https://zed.cachix.org"
+    ];
 
     extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+      "claude-code.cachix.org-1:YeXf2aNu7UTX8Vwrze0za1WEDS+4DuI2kVeWEE4fsRk="
+      "codex-cli.cachix.org-1:1Br3H1hHoRYG22n//cGKJOk3cQXgYobUel6O8DgSing="
+      # "zed.cachix.org-1:/pHQ6dpMsAZk2DiP4WCL0p9YDNKWj2Q5FL20bNmw1cU="
     ];
+
   };
 
   inputs = {
@@ -68,7 +79,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # zed.url = "github:zed-industries/zed";
+
     nix-claude-code.url = "github:ryoppippi/nix-claude-code";
+
+    codex-cli-nix.url = "github:sadjow/codex-cli-nix";
 
   };
 
@@ -110,7 +125,7 @@
 
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
-      formatter = forEachSystem (pkgs: pkgs.alejandra);
+      formatter = forEachSystem (pkgs: pkgs.nixfmt);
 
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'

@@ -11,13 +11,11 @@ in
     inputs.noctalia.homeModules.default
   ];
 
-  # home.persistence = {
-  #   "/persist".directories = [
-  #     ".cache/noctalia"
-  #     ".cache/noctalia-qs"
-  #     ".config/noctalia/plugins"
-  #   ];
-  # };
+  home.persistence = {
+    "/persist".directories = [
+      ".local/state/noctalia"
+    ];
+  };
 
   programs.noctalia = {
     enable = true;
@@ -42,6 +40,7 @@ in
           "noctalia/screen_recorder"
           "noctalia/translator"
           "noctalia/notes"
+          "cleboost/zed-provider"
         ];
 
       };
@@ -66,6 +65,10 @@ in
         directory_dark = "/home/jhonatan/nix/wallpapers";
         directory_light = "/home/jhonatan/nix/wallpapers";
         default.path = "/home/jhonatan/nix/wallpapers/wallhaven_w5lpm6.png";
+      };
+
+      osd.kinds = {
+        media = false;
       };
 
       battery = {
@@ -152,6 +155,46 @@ in
 
         bluetooth = {
           hide_when_no_connected_device = true;
+        };
+      };
+
+      lockscreen_widgets = {
+        enabled = true;
+        schema_version = 2;
+        widget_order = [
+          "lockscreen-widget-0000000000000001"
+          "lockscreen-widget-0000000000000002"
+        ];
+
+        widgets = {
+          widget.lockscreen-widget-0000000000000001 = {
+            box_height = 128.0;
+            box_width = 416.0;
+            cx = 968.0;
+            cy = 124.0;
+            rotation = 0.0;
+            type = "clock";
+
+            settings = {
+              background = false;
+              center_text = true;
+              clock_style = "digital";
+            };
+          };
+
+          widget.lockscreen-widget-0000000000000002 = {
+            box_height = 64.0;
+            box_width = 192.0;
+            cx = 966.0;
+            cy = 196.0;
+            rotation = 0.0;
+            type = "weather";
+
+            settings = {
+              background = false;
+              show_forecast = false;
+            };
+          };
         };
       };
 

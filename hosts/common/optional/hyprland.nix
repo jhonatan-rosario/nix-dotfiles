@@ -19,15 +19,8 @@
     hyprshutdown
     pkgs.magnetic-catppuccin-gtk
     gnome-themes-extra # Optional: for extra GTK theme support
+    libsecret # Optional: for storing passwords in the GNOME keyring
   ];
-
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs; [
-      thunar-archive-plugin
-      thunar-volman
-    ];
-  };
 
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
@@ -54,6 +47,24 @@
         layout = "us";
       };
     };
+  };
+
+  services.gnome.gnome-keyring.enable = true;
+
+  security.pam.services = {
+    greetd.enableGnomeKeyring = true;
+    # greetd-password.enableGnomeKeyring = true;
+    # login.enableGnomeKeyring = true;
+  };
+
+  programs.seahorse.enable = true;
+
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
   };
 
   xdg.portal = {

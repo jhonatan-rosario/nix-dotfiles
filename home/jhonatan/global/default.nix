@@ -52,6 +52,10 @@
       variant = "intl";
     };
 
+    packages = with pkgs; [
+      gcr
+    ];
+
     persistence = {
       "/persist".directories = [
         "Documents"
@@ -60,9 +64,10 @@
         "Videos"
         "nix"
         "dev"
-        "work"
+        ".config/xfce4/xfconf" # Thunar
+        ".config/Thunar/" # Thunar
+        ".local/share/keyrings" # GNOME keyring
         ".config/sops"
-        ".local/bin"
         ".local/share/nix" # trusted settings and repl history
         ".cache/mesa_shader_cache" # Mesa shader cache
         ".cache/radv_builtin_shaders" # Radv shader cache

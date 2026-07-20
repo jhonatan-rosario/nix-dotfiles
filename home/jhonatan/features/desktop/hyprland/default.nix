@@ -99,6 +99,11 @@ in
     portalPackage = null;
 
     settings = {
+      ecosystem = {
+        no_update_news = true;
+        no_donation_nag = true;
+      };
+
       general = {
         layout = "dwindle";
 
@@ -220,12 +225,16 @@ in
       bind =
         let
           defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
+          defaultVisualEditor = config.home.sessionVariables.VISUAL;
+          defaultEditor = config.home.sessionVariables.EDITOR;
         in
         [
           # Program bindings
           "SUPER,RETURN,exec,ghostty +new-window"
-          "SUPER,e,exec,${defaultApp "inode/directory"}"
+          "SUPER,e,exec,${defaultVisualEditor}"
+          "SUPERSHIFT,e,exec,${defaultEditor}"
           "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
+          "SUPER,z,exec,${defaultApp "inode/directory"}"
 
           # Switch keyboard layout
           "SUPER,SPACE,exec,hyprctl switchxkblayout all next"

@@ -18,6 +18,7 @@ in
     ./obsidian.nix
     ./zenbrowser.nix
     ./remmina.nix
+    ./zed-editor.nix
     # ./vscode.nix
   ];
 
@@ -30,21 +31,21 @@ in
     jetbrains.datagrip
     galaxy-buds-client
     # winboat
-    # zed-editor-fhs
     # bitwarden-desktop # Problema no build versão 2026.2.1
-    # antigravity
     # dbeaver-bin
   ];
 
   home.persistence."/persist".directories = [
-    "DataGripProjects"
     ".anydesk"
     ".gemini"
     ".antigravity"
     ".antigravity-ide"
     ".config/Antigravity"
     ".config/Antigravity IDE"
+    "DataGripProjects"
     ".config/JetBrains"
+    ".local/share/JetBrains"
+    ".cache/JetBrains"
     ".java/.userPrefs/jetbrains"
   ];
 

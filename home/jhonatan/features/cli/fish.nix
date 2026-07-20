@@ -10,10 +10,12 @@ let
   hasRipgrep = hasPackage "ripgrep";
   hasEza = hasPackage "eza";
   hasBat = hasPackage "bat";
-  hasBtop = hasPackage "btop";
+  # hasBtop = hasPackage "btop";
+  hasBtm = hasPackage "bottom";
   hasNeovim = config.programs.neovim.enable;
   hasNeomutt = config.programs.neomutt.enable;
   hasZoxide = config.programs.zoxide.enable;
+  hasZed = hasPackage config.programs.zed-editor.enable;
 in
 {
 
@@ -67,10 +69,11 @@ in
         flutterShell = "nix develop -c $SHELL ${flakePath}";
         ls = mkIf hasEza "eza";
         cat = mkIf hasBat "bat";
-        top = mkIf hasBtop "btop";
+        top = mkIf hasBtm "btm";
         grep = mkIf hasRipgrep "rg";
         htop = "top";
         cd = mkIf hasZoxide "z";
+        zed = mkIf hasZed "zed";
       };
       functions = {
         # Disable greeting

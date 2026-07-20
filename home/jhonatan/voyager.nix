@@ -14,7 +14,7 @@ in
     ./global
     ./features/programming
     ./features/desktop/hyprland
-    ./features/pass
+    # ./features/pass # Disabled in favor of GNOME Keyring
     # ./features/backup
   ];
   # Red
