@@ -75,9 +75,9 @@
 
     # zed.url = "github:zed-industries/zed";
 
-    nix-claude-code.url = "github:ryoppippi/nix-claude-code";
+    claude-code.url = "github:sadjow/claude-code-nix";
 
-    codex-cli-nix.url = "github:sadjow/codex-cli-nix";
+    codex-cli.url = "github:sadjow/codex-cli-nix";
 
   };
 

@@ -4,17 +4,23 @@
   ...
 }:
 let
-  claude-code = inputs.nix-claude-code.packages.${pkgs.system}.default;
-  codex = inputs.codex-cli-nix.packages.${pkgs.system}.default;
+  claude-code = inputs.claude-code.packages.${pkgs.system}.default;
+  codex-cli = inputs.codex-cli.packages.${pkgs.system}.default;
 in
 {
   imports = [
-    ./android.nix
+    ./mobile.nix
   ];
 
-  home.persistence."/persist".directories = [
-    ".claude"
-  ];
+  home.persistence."/persist" = {
+    directories = [
+      ".claude"
+      ".codex"
+    ];
+    files = [
+      ".claude.json"
+    ];
+  };
 
   programs = {
     direnv = {
@@ -28,7 +34,7 @@ in
     bun
     nodejs_24
     claude-code
-    codex
+    codex-cli
   ];
 
 }
