@@ -53,6 +53,7 @@
       variant = "altgr-intl,intl,";
     };
 
+    # Fix "ç" in us intl variant
     file.".XCompose".text = ''
       include "%L"
       <dead_acute> <c> : "ç" U00e7

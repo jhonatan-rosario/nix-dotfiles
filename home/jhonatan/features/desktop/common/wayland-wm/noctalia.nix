@@ -163,8 +163,8 @@ in
           hide_when_single_layout = true;
           custom_labels = {
             "English (US, intl., with dead keys)" = "US (Intl)";
-            "English (intl., with AltGr dead keys)" = "US (AltGr)";
-            "Portuguese (Brazil)" = "PT (BR)";
+            "English (intl., with AltGr dead keys)" = "US";
+            "Portuguese (Brazil)" = "PT";
           };
         };
       };
