@@ -33,6 +33,7 @@
     extraPackages = with pkgs; [
       nixd
       nixfmt
+      dart
       # bun
       # git
       # ripgrep
