@@ -49,6 +49,7 @@
     nix-output-monitor
     zip
     unzip
+    github-cli
 
     fastfetch
     bitwarden-cli
