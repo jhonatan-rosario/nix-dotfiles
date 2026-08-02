@@ -2,6 +2,7 @@
 # You can build them using 'nix build .#example'
 {pkgs ? import <nixpkgs> {}, ...}: rec {
   # example = pkgs.callPackage ./example { };
+  orca-ide = pkgs.callPackage ./orca-ide { };
 
   # My wallpaper collection
   wallpapers = import ./wallpapers {inherit pkgs;};

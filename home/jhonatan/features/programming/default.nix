@@ -4,8 +4,9 @@
   ...
 }:
 let
-  claude-code = inputs.claude-code.packages.${pkgs.system}.default;
-  codex-cli = inputs.codex-cli.packages.${pkgs.system}.default;
+  system = pkgs.stdenv.hostPlatform.system;
+  claude-code = inputs.claude-code.packages.${system}.default;
+  codex-cli = inputs.codex-cli.packages.${system}.default;
 in
 {
   imports = [
@@ -35,6 +36,7 @@ in
     nodejs_24
     claude-code
     codex-cli
+    orca-ide
   ];
 
 }
