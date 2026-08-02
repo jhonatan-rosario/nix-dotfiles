@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
+let
+  system = pkgs.stdenv.hostPlatform.system;
+  herdr = inputs.herdr.packages.${system}.default;
+in
 {
   imports = [
     ./ssh.nix
@@ -58,5 +62,7 @@
     cmatrix # Matrix rain
     dig # DNS Tools
     traceroute # Tracks the routue by packets over an IP network
+
+    herdr # Better Tmux - Terminal workspace manager for AI coding agents
   ];
 }

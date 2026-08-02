@@ -79,6 +79,8 @@
 
     codex-cli.url = "github:sadjow/codex-cli-nix";
 
+    herdr.url = "github:ogulcancelik/herdr";
+
   };
 
   outputs =
