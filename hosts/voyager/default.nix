@@ -35,6 +35,7 @@
     ../common/optional/noctalia.nix
     ../common/optional/screen-recorder.nix
     ../common/optional/samba.nix
+    ../common/optional/tailscale.nix
   ];
 
   networking = {
