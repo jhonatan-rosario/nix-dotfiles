@@ -65,4 +65,11 @@ in
 
     herdr # Better Tmux - Terminal workspace manager for AI coding agents
   ];
+
+  home.persistence."/persist" = {
+    directories = [
+      ".config/herdr"
+      ".local/state/herdr"
+    ];
+  };
 }
