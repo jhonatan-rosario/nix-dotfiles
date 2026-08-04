@@ -1,15 +1,17 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   qt = {
     enable = true;
     platformTheme = {
       name = "gtk3";
-      package = [
+      package = with pkgs; [
         # QT 5
         # (pkgs.libsForQt5.qtstyleplugins.overrideAttrs (old: {
         #   # Make qtstyleplugins' gtk2 platform theme activate if QT_QPA_PLATFORMTHEME=gtk3
         #   patches = (old.patches or []) ++ [./qtstyleplugins-gtk3-key.patch];
         # }))
-        pkgs.libsForQt5.qtstyleplugins
+        qt5.qtbase
+        qt5.qtwayland
+        libsForQt5.qtstyleplugins
         # QT 6
         # (pkgs.qt6.qtbase.override {
         #   # Make qtbase's gtk3 platform theme read dark/light status from xdp.
@@ -18,7 +20,8 @@
         #   patches = [./qtbase-gtk3-xdp.patch];
         #   qttranslations = null;
         # })
-        pkgs.qt6.qtbase
+        qt6.qtbase
+        qt6.qtwayland
       ];
     };
   };
