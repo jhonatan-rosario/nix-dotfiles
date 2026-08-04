@@ -51,8 +51,10 @@ let
       profile = ''
         export ANDROID_HOME="$HOME/Android/Sdk"
         export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+        export JAVA_HOME="${pkgs.jdk17}"
+        export GRADLE_USER_HOME="$HOME/.gradle"
         export CHROME_EXECUTABLE=${pkgs.google-chrome}/bin/google-chrome
-        export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/cmdline-tools/latest/bin:${pkgs.google-chrome}/bin"
+        export PATH="$PATH:$JAVA_HOME/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/cmdline-tools/latest/bin:${pkgs.google-chrome}/bin"
 
         # Customize o prompt do Fish
         exec ${pkgs.fish}/bin/fish -C '
