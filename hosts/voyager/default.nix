@@ -15,6 +15,7 @@
     ../common/global
     ../common/users/jhonatan
     ../common/optional/hyprland.nix # Window Manager
+    ../common/optional/niri.nix # Window Manager (em teste — escolha no greeter)
 
     # ../common/optional/gnome.nix # Desktop Environment
     # ../common/optional/plasma.nix # Desktop Environment
@@ -36,6 +37,7 @@
     ../common/optional/screen-recorder.nix
     ../common/optional/samba.nix
     ../common/optional/tailscale.nix
+    ../common/optional/winbox.nix
   ];
 
   networking = {

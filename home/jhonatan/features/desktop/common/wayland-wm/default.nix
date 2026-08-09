@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./monitor.nix
     ./imv.nix
     ./cliphist.nix
     ./zathura.nix

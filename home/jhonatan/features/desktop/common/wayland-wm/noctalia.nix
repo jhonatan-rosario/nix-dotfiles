@@ -59,6 +59,10 @@ in
         mode = "dark";
         source = "builtin";
         builtin = "Catppuccin";
+
+        # Gera ~/.config/niri/noctalia.kdl com a paleta ativa. O config.kdl do
+        # niri já faz `include optional=true` desse arquivo.
+        templates.builtin_ids = [ "niri" ];
       };
 
       wallpaper = {
@@ -66,6 +70,7 @@ in
         directory_dark = "/home/jhonatan/nix/wallpapers";
         directory_light = "/home/jhonatan/nix/wallpapers";
         default.path = "/home/jhonatan/nix/wallpapers/wallhaven_w5lpm6.png";
+        transition_on_startup = false;
       };
 
       osd.kinds = {

@@ -31,7 +31,7 @@
     # Optional configuration
     greeter-args = "";
     settings = {
-      session.default = "Hyprland";
+      session.default = "Niri";
 
       appearance.schema = "Catppuccin";
 
