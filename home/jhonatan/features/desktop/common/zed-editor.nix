@@ -127,6 +127,18 @@
         "**/.next"
       ];
 
+      terminal = {
+        shell = {
+          program = "fish";
+        };
+        option_as_meta = true;
+        env = {
+          TERM = "xterm-256color";
+        };
+        font_size = 15;
+        font_family = "JetBrains Mono";
+      };
+
       languages = {
         "Nix" = {
           language_servers = [
@@ -139,11 +151,6 @@
             };
           };
           format_on_save = "on";
-          # format_on_save = {
-          #   external = {
-          #     command = "nixfmt";
-          #   };
-          # };
         };
       };
     };
