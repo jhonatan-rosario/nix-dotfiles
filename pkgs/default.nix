@@ -1,11 +1,16 @@
 # Custom packages, that can be defined similarly to ones from nixpkgs
 # You can build them using 'nix build .#example'
-{pkgs ? import <nixpkgs> {}, ...}: rec {
+{
+  pkgs ? import <nixpkgs> { },
+  ...
+}:
+rec {
   # example = pkgs.callPackage ./example { };
   orca-ide = pkgs.callPackage ./orca-ide { };
+  resterm = pkgs.callPackage ./resterm { };
 
   # My wallpaper collection
-  wallpapers = import ./wallpapers {inherit pkgs;};
+  wallpapers = import ./wallpapers { inherit pkgs; };
   allWallpapers = pkgs.linkFarmFromDrvs "wallpapers" (pkgs.lib.attrValues wallpapers);
 
   # And colorschemes based on it

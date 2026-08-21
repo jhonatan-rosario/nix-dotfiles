@@ -64,6 +64,7 @@ in
     traceroute # Tracks the routue by packets over an IP network
 
     herdr # Better Tmux - Terminal workspace manager for AI coding agents
+    resterm # Terminal-based REST client
   ];
 
   home.persistence."/persist" = {
