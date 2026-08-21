@@ -157,7 +157,7 @@ in
 
       overview = {
         zoom = 0.5;
-        backdrop-color = hex palette.base00;
+        # backdrop-color = hex palette.base00;
       };
 
       # O noctalia pede o blur pelo protocolo ext-background-effect-v1, que o
@@ -205,6 +205,15 @@ in
           window-rule = {
             geometry-corner-radius = 20;
             clip-to-geometry = true;
+          };
+        }
+
+        {
+          window-rule = {
+            match._props.app-id = "dev.noctalia.Noctalia";
+            open-floating = true;
+            default-column-width.fixed = 1080;
+            default-window-height.fixed = 920;
           };
         }
 
