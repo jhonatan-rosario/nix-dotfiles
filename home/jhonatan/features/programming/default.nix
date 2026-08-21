@@ -5,8 +5,10 @@
 }:
 let
   system = pkgs.stdenv.hostPlatform.system;
+  antigravity-cli = inputs.antigravity.packages.${system}.antigravity-cli;
   claude-code = inputs.claude-code.packages.${system}.default;
   codex-cli = inputs.codex-cli.packages.${system}.default;
+  openspec = inputs.openspec.packages.${system}.default;
 in
 {
   imports = [
@@ -15,6 +17,11 @@ in
 
   home.persistence."/persist" = {
     directories = [
+      ".gemini"
+      ".antigravity"
+      ".antigravity-ide"
+      ".config/Antigravity"
+      ".config/Antigravity IDE"
       ".claude"
       ".codex"
     ];
@@ -34,9 +41,11 @@ in
   home.packages = with pkgs; [
     bun
     nodejs_24
+    antigravity-cli
     claude-code
     codex-cli
     orca-ide
+    openspec
   ];
 
 }

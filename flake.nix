@@ -68,18 +68,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    antigravity-nix = {
-      url = "github:jacopone/antigravity-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # antigravity-nix = {
+    #   url = "github:jacopone/antigravity-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # zed.url = "github:zed-industries/zed";
+
+    antigravity.url = "github:Hy4ri/antigravity-flake";
 
     claude-code.url = "github:sadjow/claude-code-nix";
 
     codex-cli.url = "github:sadjow/codex-cli-nix";
 
     herdr.url = "github:ogulcancelik/herdr";
+
+    openspec.url = "github:Fission-AI/OpenSpec";
 
   };
 

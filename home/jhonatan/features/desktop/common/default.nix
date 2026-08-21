@@ -1,11 +1,7 @@
 {
-  inputs,
   pkgs,
   ...
 }:
-let
-  antigravity = inputs.antigravity-nix.packages.x86_64-linux;
-in
 {
   imports = [
     ./font.nix
@@ -25,9 +21,6 @@ in
   home.packages = with pkgs; [
     libnotify
     anydesk
-    antigravity.default
-    antigravity.google-antigravity-ide
-    antigravity.google-antigravity-cli
     jetbrains.datagrip
     galaxy-buds-client
     # winboat
@@ -37,11 +30,6 @@ in
 
   home.persistence."/persist".directories = [
     ".anydesk"
-    ".gemini"
-    ".antigravity"
-    ".antigravity-ide"
-    ".config/Antigravity"
-    ".config/Antigravity IDE"
     "DataGripProjects"
     ".config/JetBrains"
     ".local/share/JetBrains"
