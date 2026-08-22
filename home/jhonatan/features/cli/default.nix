@@ -16,6 +16,7 @@ in
     ./zoxide.nix
     ./fzf.nix
     ./gpg.nix
+    ./atuin.nix
     # ./nix-alien.nix
     # ./direnv.nix
     # ./gh.nix
