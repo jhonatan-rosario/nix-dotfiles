@@ -1,10 +1,21 @@
 { config, pkgs, ... }:
 let
+  resticRepository = "rclone:gdrive:Backups/NixOS";
+  resticPasswordFile = config.sops.secrets.restic-password.path;
   rcloneConfigPath = config.home.homeDirectory + "/.config/rclone/rclone.conf";
 in
 {
-  # Garante que o rclone esteja disponível para o serviço
-  home.packages = [ pkgs.rclone ];
+  # Garante que o rclone e o restic estejam disponíveis no terminal (CLI)
+  home.packages = [
+    pkgs.rclone
+    pkgs.restic
+  ];
+
+  # Variáveis de ambiente para usar o restic na linha de comando sem digitar repositório ou senha
+  home.sessionVariables = {
+    RESTIC_REPOSITORY = resticRepository;
+    RESTIC_PASSWORD_FILE = resticPasswordFile;
+  };
 
   # Declarar o segredo gerenciado pelo sops-nix
   sops.secrets.restic-password = { };
@@ -19,10 +30,10 @@ in
         # O repositório usa o protocolo rclone
         # 'gdrive' é o nome que você deu no 'rclone config'
         # 'Backups/NixOS' é a pasta que será criada no seu Google Drive
-        repository = "rclone:gdrive:Backups/NixOS";
+        repository = resticRepository;
 
         # Arquivo de senha gerenciado pelo sops-nix
-        passwordFile = config.sops.secrets.restic-password.path;
+        passwordFile = resticPasswordFile;
 
         # Cria o repositório no destino automaticamente caso ainda não exista
         initialize = true;
