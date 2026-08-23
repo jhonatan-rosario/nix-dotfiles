@@ -8,6 +8,7 @@
 let
   grimExe = lib.getExe pkgs.grim;
   slurpExe = lib.getExe pkgs.slurp;
+  wayfreezeExe = lib.getExe pkgs.wayfreeze;
   sattyExe = lib.getExe pkgs.satty;
   tesseractExe = lib.getExe pkgs.tesseract;
   jqExe = lib.getExe pkgs.jq;
@@ -29,8 +30,14 @@ in
 
     case "$MODE" in
       region)
+        ${wayfreezeExe} --hide-cursor &
+        FREEZE_PID=$!
+        trap 'kill "$FREEZE_PID" 2>/dev/null || true; rm -rf "$TEMP_DIR"' EXIT
+        sleep 0.1
+
         GEOMETRY=$(${slurpExe} -d) || exit 0
         ${grimExe} -g "$GEOMETRY" "$FILE"
+        kill "$FREEZE_PID" 2>/dev/null || true
         ;;
       output)
         OUTPUT=$(${niriExe} msg --json focused-output | ${jqExe} -r '.name')
@@ -50,6 +57,11 @@ in
   niri-ocr = pkgs.writeShellScriptBin "niri-ocr" ''
     set -eu
 
+    ${wayfreezeExe} --hide-cursor &
+    FREEZE_PID=$!
+    trap 'kill "$FREEZE_PID" 2>/dev/null || true' EXIT
+    sleep 0.1
+
     GEOMETRY=$(${slurpExe} -d) || {
       ${notifySendExe} "OCR Cancelado" "A seleção de tela foi abortada" \
         -i dialog-warning -t 2000
@@ -58,6 +70,8 @@ in
 
     TEXT=$(${grimExe} -g "$GEOMETRY" - \
       | ${tesseractExe} stdin stdout -l por+eng 2>/dev/null || true)
+
+    kill "$FREEZE_PID" 2>/dev/null || true
 
     if [ -n "$TEXT" ]; then
       printf '%s' "$TEXT" | ${wlCopyExe}

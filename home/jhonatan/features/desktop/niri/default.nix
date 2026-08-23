@@ -48,6 +48,7 @@ in
     (with pkgs; [
       grim
       slurp
+      wayfreeze
       satty
       tesseract
       jq
