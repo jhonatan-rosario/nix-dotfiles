@@ -51,6 +51,7 @@ let
       focus = "focus-column-left";
       move = "move-column-left";
       monitor = "focus-monitor-left";
+      columnToMonitor = "move-column-to-monitor-left";
       workspaceToMonitor = "move-workspace-to-monitor-left";
     }
     {
@@ -59,6 +60,7 @@ let
       focus = "focus-window-down";
       move = "move-window-down";
       monitor = "focus-monitor-down";
+      columnToMonitor = "move-column-to-monitor-down";
       workspaceToMonitor = "move-workspace-to-monitor-down";
     }
     {
@@ -67,6 +69,7 @@ let
       focus = "focus-window-up";
       move = "move-window-up";
       monitor = "focus-monitor-up";
+      columnToMonitor = "move-column-to-monitor-up";
       workspaceToMonitor = "move-workspace-to-monitor-up";
     }
     {
@@ -75,6 +78,7 @@ let
       focus = "focus-column-right";
       move = "move-column-right";
       monitor = "focus-monitor-right";
+      columnToMonitor = "move-column-to-monitor-right";
       workspaceToMonitor = "move-workspace-to-monitor-right";
     }
   ];
@@ -103,10 +107,16 @@ let
     ]) directions
   );
 
-  # hyprland: SUPERALT+hjkl -> focusmonitor. Aqui só as setas, porque o
-  # Mod+Alt+L ficou com o lock do noctalia (ver abaixo).
+  # Foco e movimentação de colunas entre monitores:
+  # Mod+Alt+hjkl / Mod+Alt+setas -> foca o monitor adjacente
+  # Mod+Alt+Shift+hjkl / Mod+Alt+Shift+setas -> move a coluna para o monitor adjacente
   monitors = lib.listToAttrs (
-    map (d: lib.nameValuePair "Mod+Alt+${d.arrow}" (act d.monitor)) directions
+    lib.concatMap (d: [
+      (lib.nameValuePair "Mod+Alt+${d.key}" (act d.monitor))
+      (lib.nameValuePair "Mod+Alt+${d.arrow}" (act d.monitor))
+      (lib.nameValuePair "Mod+Alt+Shift+${d.key}" (act d.columnToMonitor))
+      (lib.nameValuePair "Mod+Alt+Shift+${d.arrow}" (act d.columnToMonitor))
+    ]) directions
   );
 
   workspaceBinds = lib.listToAttrs (
@@ -151,10 +161,8 @@ in
   "Alt+Space" = noctalia "panel-toggle launcher";
   # hyprland: ALT+F4
   "Alt+F4" = noctalia "panel-toggle session";
-  # hyprland: SUPER+L. No niri o Mod+L é o focus-column-right, essencial para
-  # navegar entre colunas, então o lock ganhou um modificador extra (é também o
-  # bind sugerido pelo upstream do niri).
-  "Mod+Alt+L" = noctaliaLocked "session lock";
+  # Bloqueio de tela: Mod+Alt+BackSpace (libera Mod+Alt+L para focar monitor direito)
+  "Mod+Alt+BackSpace" = noctaliaLocked "session lock";
   # hyprland: SUPER+V
   "Mod+V" = noctalia "panel-toggle clipboard";
   # hyprland: ALT_L+TAB (o switcher nativo do niri fica no Mod+Tab)
@@ -165,6 +173,10 @@ in
   "Mod+R" = noctalia "plugin noctalia/screen_recorder:service all toggle";
   # hyprland: SUPER+N
   "Mod+N" = noctalia "panel-toggle noctalia/notes:panel";
+
+  # ---- Monitores (ciclo rápido independente de posição) ------------------
+  "Mod+Backslash".focus-monitor-next = { };
+  "Mod+Shift+Backslash".focus-monitor-previous = { };
 
   # ---- Mídia, volume e brilho (via noctalia) -----------------------------
   "XF86MonBrightnessUp" = noctaliaLocked "brightness-up all 10";
