@@ -16,7 +16,7 @@ in
     ./features/desktop/hyprland
     ./features/desktop/niri # Em teste; comente esta linha para desligar
     # ./features/pass # Disabled in favor of GNOME Keyring
-    # ./features/backup
+    ./features/backup
   ];
   # Red
   wallpaper = pkgs.wallpapers.aenami-dawn;
