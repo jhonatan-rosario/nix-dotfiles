@@ -17,7 +17,7 @@
       sync_address = "https://atuin.nohalls.com";
       search_mode = "fuzzy";
       filter_mode = "host";
-      filter_mode_shell_up_key_binding = "directory";
+      # filter_mode_shell_up_key_binding = "directory";
       enter_accept = "true";
     };
   };
