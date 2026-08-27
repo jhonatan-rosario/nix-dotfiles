@@ -52,6 +52,7 @@
         ndkVersions = [
           "26.1.10909125"
           "27.1.12297006"
+          "28.2.13676358"
         ];
         buildToolsVersions = [
           "30.0.3"
@@ -116,9 +117,12 @@
 
         # Auto-accept Android SDK licenses in ~/.android/licenses for AGP and Flutter
         mkdir -p "$HOME/.android/licenses"
+        rm -rf "$HOME/.android/licenses"/* 2>/dev/null || true
         if [ -d "${androidSdk}/libexec/android-sdk/licenses" ]; then
-          cp -rf "${androidSdk}/libexec/android-sdk/licenses"/* "$HOME/.android/licenses/" 2>/dev/null || true
+          cp -Lrf "${androidSdk}/libexec/android-sdk/licenses"/* "$HOME/.android/licenses/" 2>/dev/null || true
+          chmod -R u+w "$HOME/.android/licenses" 2>/dev/null || true
         fi
+        rm -f "$HOME/.android/licenses/android-sdk-license" 2>/dev/null || true
 
         cat << 'EOF' > "$HOME/.android/licenses/android-sdk-license"
 89330172875f4570941119e27d38e4d2a3f49e48
