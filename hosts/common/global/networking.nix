@@ -2,6 +2,22 @@
 {
 
   sops.secrets.wireless-env = { };
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      8081 # React Native & Expo Metro Bundler
+      19000 # Expo Dev Server
+      19001 # Expo Metro
+      19002 # Expo DevTools
+      8080 # Servidores Web locais
+      3000 # Node / React / Next.js
+      3001 # Node / React / Next.js
+      3002 # Node / React / Next.js
+      5173 # Vite
+    ];
+  };
+
   # Enable networking
   networking.networkmanager = {
     enable = true;
