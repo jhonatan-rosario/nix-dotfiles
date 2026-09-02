@@ -78,6 +78,10 @@ in
       functions = {
         # Disable greeting
         fish_greeting = "";
+        ssh = {
+          wraps = "ssh";
+          body = "TERM=xterm-256color command ssh $argv";
+        };
         # Grep using ripgrep and pass to nvim
         # nvimrg = mkIf (hasNeovim && hasRipgrep) "nvim -q (rg --vimgrep $argv | psub)";
         # Merge history when pressing up
