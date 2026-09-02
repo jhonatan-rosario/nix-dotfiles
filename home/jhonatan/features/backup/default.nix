@@ -70,6 +70,7 @@ in
           # Runtimes e caches pesados de desenvolvimento
           "/persist/home/jhonatan/.gradle"
           "/persist/home/jhonatan/Android/Sdk"
+          "/persist/home/jhonatan/.config/.android"
           "/persist/home/jhonatan/.pub-cache"
           "/persist/home/jhonatan/.local/share/flatpak"
           "/persist/home/jhonatan/.local/share/zed/languages"
