@@ -15,6 +15,8 @@ let
 
   prefs = {
     # Check these out at about:config
+    "widget.use-xdg-desktop-portal.file-picker" = 1;
+    "widget.use-xdg-desktop-portal.mime-handler" = 1;
     "extensions.autoDisableScopes" = 0;
     "extensions.pocket.enabled" = false;
     "browser.download.useDownloadDir" = false;

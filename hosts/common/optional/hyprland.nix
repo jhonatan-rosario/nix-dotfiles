@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   pkgs,
   ...
@@ -20,6 +21,11 @@
     pkgs.magnetic-catppuccin-gtk
     gnome-themes-extra # Optional: for extra GTK theme support
     libsecret # Optional: for storing passwords in the GNOME keyring
+    file-roller # GUI Archive Manager (used by thunar-archive-plugin)
+    p7zip
+    unrar
+    unzip
+    zip
   ];
 
   services.gvfs.enable = true; # Mount, trash, and other functionalities
@@ -72,6 +78,20 @@
     extraPortals = with pkgs; [
       xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
+      xdg-desktop-portal-termfilechooser
     ];
+    config = {
+      common = {
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
+      };
+      hyprland = {
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.FileChooser" = lib.mkForce [ "termfilechooser" ];
+      };
+    };
   };
 }

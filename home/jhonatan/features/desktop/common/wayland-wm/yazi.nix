@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   config,
   ...
 }:
@@ -100,7 +99,7 @@ in
         sort_reverse = false;
         sort_dir_first = true;
         linemode = "size";
-        show_hidden = true;
+        show_hidden = false;
         show_symlink = true;
       };
 
@@ -364,27 +363,9 @@ in
     };
   };
 
-  xdg.portal = {
-    enable = lib.mkForce true;
-    extraPortals = with pkgs; [
-      # xdg-desktop-portal-gtk
-      xdg-desktop-portal-termfilechooser
-    ];
-
-    config.common."org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
-  };
-
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "inode/directory" = [ "yazi.desktop" ];
-    };
-  };
-
   xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
     enable = true;
     force = true;
-    executable = true;
     text = ''
       [filechooser]
       cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh

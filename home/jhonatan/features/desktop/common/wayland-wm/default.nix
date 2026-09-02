@@ -31,6 +31,7 @@
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
     QT_QPA_PLATFORM = "wayland";
+    GTK_USE_PORTAL = 1;
   };
 
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-wlr ];

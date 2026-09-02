@@ -16,6 +16,7 @@
 # repetido aqui de forma idempotente, para que comentar a importação do
 # hyprland não deixe o sistema sem essas peças.
 {
+  lib,
   pkgs,
   ...
 }:
@@ -34,6 +35,11 @@
     xwayland-satellite
 
     libsecret # Opcional: guardar senhas no GNOME keyring
+    file-roller # GUI Archive Manager (used by thunar-archive-plugin)
+    p7zip
+    unrar
+    unzip
+    zip
   ];
 
   services.gvfs.enable = true; # Montagem, lixeira e afins
@@ -49,6 +55,28 @@
       thunar-archive-plugin
       thunar-volman
     ];
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-termfilechooser
+    ];
+    config = {
+      common = {
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
+      };
+      niri = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.FileChooser" = lib.mkForce [ "termfilechooser" ];
+      };
+    };
   };
 
   # O greeter (greetd + noctalia-greeter) vem de ../optional/hyprland.nix.
