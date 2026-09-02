@@ -9,7 +9,7 @@ let
     sha256 = "05ngy2alygs5w40skghn03y8zsivi0snya99kjs68xnjyxx4cqf3";
   };
 
-  appimageContents = pkgs.appimageTools.extractType2 { inherit pname version src; };
+  appimageContents = pkgs.appimageTools.extract { inherit pname version src; };
 in
 pkgs.appimageTools.wrapType2 {
   inherit pname version src;
