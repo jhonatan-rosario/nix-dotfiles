@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   ...
@@ -32,8 +31,11 @@
       DEFAULT = g;
     };
     settings = {
-      # Workaround for google meet
-      qt.args = [ "disable-features=PermissionElement" ];
+      # Workaround for google meet and AMD Wayland graphics glitches
+      qt.args = [
+        "disable-features=PermissionElement"
+        "disable-gpu-compositing"
+      ];
       url = rec {
         default_page = "https://google.com";
         start_pages = [ default_page ];
@@ -48,6 +50,7 @@
         show = "multiple";
         position = "left";
         indicator.width = 0;
+        width = "10%";
       };
       # Also avoids qutebrowser stealing focus when reloading
       new_instance_open_target = "window";
