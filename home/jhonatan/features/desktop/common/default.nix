@@ -15,6 +15,7 @@
     ./zenbrowser.nix
     ./remmina.nix
     ./zed-editor.nix
+    ./thunar.nix
     # ./vscode.nix
   ];
 
